@@ -3,9 +3,11 @@ import { Outlet, useLocation } from "react-router";
 import { PropagateLoader } from "react-spinners";
 import { useUser } from "../../context/Auth";
 import { useHeader } from "../../context/Header";
+import { useModals } from "../../context/ModalsContext";
 import { useSpinner } from "../../context/Spinner";
 import apiHelper from "../../helper/api";
 import { FloatingMenu } from "../FloatingMenu/FloatingMenu";
+import ModalSuccess from "../ModalSuccess/ModalSuccess";
 
 const override = {
   display: "grid",
@@ -18,6 +20,7 @@ const PrivateLayout = () => {
   const { setUser } = useUser();
   const { titleHeader } = useHeader();
   const { showSpinner } = useSpinner();
+  const { showModal, config } = useModals();
 
   const getDataUser = async () => {
     try {
@@ -69,6 +72,8 @@ const PrivateLayout = () => {
           />
         </div>
       )}
+
+      {showModal && config.type && <ModalSuccess {...config} />}
     </div>
   );
 };

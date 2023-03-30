@@ -1,18 +1,24 @@
 import { Input } from "antd";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import apiHelper from "../../helper/api";
 import { initialValuesLogin, LoginSchema } from "../../schemas/LoginSchemas";
 import { base64Encrypt } from "../../util/encryptor.util";
 import { showAlertError, showAlertSuccess } from "../../util/util";
+import { useModals } from "../../context/ModalsContext";
+import { ImgSuccessModal } from "../../assets";
+import { useSpinner } from "../../context/Spinner";
 
 const { Password } = Input;
 
 export default function Login() {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [disableButton, setDisableButton] = useState(false);
+  const { setShowSpinner } = useSpinner();
+  const { setShowModal, setConfig } = useModals();
 
   const formik = useFormik({
     initialValues: initialValuesLogin,
@@ -23,7 +29,25 @@ export default function Login() {
     },
   });
 
+  const showModalSuccess = () => {
+    setShowModal(true);
+    setConfig((prev) => ({
+      ...prev,
+      message: "Welcome to Multimedia...",
+      image: ImgSuccessModal,
+      title: "Success!!!",
+    }));
+    setTimeout(() => {
+      setShowModal(false);
+    }, 2500);
+  };
+
+  useEffect(() => {
+    if (token) navigate("/");
+  }, []);
+
   const login = async (body) => {
+    setShowSpinner(true);
     setDisableButton((prev) => !prev);
     const { username, password } = body;
     const data = {
@@ -33,15 +57,17 @@ export default function Login() {
     apiHelper
       .post("/auth/login", data)
       .then(({ data }) => {
+        setShowSpinner(false);
         setDisableButton((prev) => !prev);
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
         navigate("/");
-        showAlertSuccess("Login berhasil");
+        showModalSuccess();
+        // showAlertSuccess("Login berhasil");
       })
       .catch((err) => {
+        setShowSpinner(false);
         setDisableButton((prev) => !prev);
-
         showAlertError(err.message);
       });
   };

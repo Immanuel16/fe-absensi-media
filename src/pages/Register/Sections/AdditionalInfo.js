@@ -2,8 +2,11 @@ import { Checkbox, Input } from "antd";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { ImgSuccessModal } from "../../../assets";
 import { ErrorMessage } from "../../../components/ErrorMessage/ErrorMessage";
+import { useModals } from "../../../context/ModalsContext";
 import { useRegisterContext } from "../../../context/RegisterContext";
+import { useSpinner } from "../../../context/Spinner";
 import apiHelper from "../../../helper/api";
 import {
   AdditionalInfoSchemas,
@@ -19,6 +22,8 @@ const AdditionalInfo = () => {
   const [emailHint, setEmailHint] = useState(true);
   const { setActiveStepIndex, registerData } = useRegisterContext();
   const [disableButton, setDisableButton] = useState(false);
+  const { setShowModal, setConfig } = useModals();
+  const { setShowSpinner } = useSpinner();
 
   const formik = useFormik({
     initialValues: initialValuesRegister.additionalInfo,
@@ -27,6 +32,19 @@ const AdditionalInfo = () => {
       registerCrew(values);
     },
   });
+
+  const showModalSuccess = () => {
+    setShowModal(true);
+    setConfig((prev) => ({
+      ...prev,
+      message: "Welcome to Multimedia...",
+      image: ImgSuccessModal,
+      title: "Registration Success!",
+    }));
+    setTimeout(() => {
+      setShowModal(false);
+    }, 2500);
+  };
 
   const onChangeField = (name, e) => {
     formik.setFieldValue(name, e);
@@ -39,6 +57,7 @@ const AdditionalInfo = () => {
   };
 
   const registerCrew = async (values) => {
+    setShowSpinner(true);
     setDisableButton((prev) => !prev);
     const data = { ...registerData, ...values };
     data.password = base64Encrypt(data.password);
@@ -47,11 +66,16 @@ const AdditionalInfo = () => {
     data.hmc = data.hmc ? 1 : 0;
     data.orientasi = data.orientasi ? 1 : 0;
     try {
-      await apiHelper.post("/public/register", data, { timeout: 5000 });
-      navigate("/login");
-      showAlertSuccess("Registrasi berhasil");
+      await apiHelper.post("/public/register", data, { timeout: 10000 });
+      setShowSpinner(false);
       setActiveStepIndex(0);
+      showModalSuccess();
+      setTimeout(() => {
+        navigate("/login");
+      }, 2500);
+      // showAlertSuccess("Registrasi berhasil");
     } catch (error) {
+      setShowSpinner(false);
       setDisableButton((prev) => !prev);
       showAlertError(error.message);
     }

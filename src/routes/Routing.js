@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router";
 import MobileLayout from "../components/MobileLayout/MobileLayout";
 import PrivateLayout from "../components/PrivateLayout/PrivateLayout";
-import { PublicLayout } from "../components/PublicLayout/PublicLayout";
+import PublicLayout from "../components/PublicLayout/PublicLayout";
 import { UserProvider } from "../context/Auth";
 import HeaderProvider from "../context/Header";
 import { RegisterProvider } from "../context/RegisterContext";
