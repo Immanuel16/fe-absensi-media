@@ -64,10 +64,10 @@ export default function Login() {
         navigate("/");
         showModalSuccess();
       })
-      .catch(({ response }) => {
+      .catch((err) => {
         setShowSpinner(false);
         setDisableButton((prev) => !prev);
-        showAlertError(response.data.message);
+        showAlertError(err.message);
       });
   };
 
