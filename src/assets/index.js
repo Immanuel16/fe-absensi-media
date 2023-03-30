@@ -6,6 +6,7 @@ import ProfileImageExample from "./img/example.png";
 import BgFormRecruitment from "./img/bg-form-recruitment.png";
 import ImgEmptyAbsence from "./img/img-empty-absence.png";
 import ImgSuccessModal from "./img/img-modal-success.png";
+import ImgSuccessModal2 from "./img/img-modal-success-2.png";
 
 export {
   AccountMenuIcon,
@@ -14,6 +15,7 @@ export {
   BgFormRecruitment,
   ImgEmptyAbsence,
   ImgSuccessModal,
+  ImgSuccessModal2,
   ProfileImageExample,
   TaskMenuIcon,
 };

@@ -17,14 +17,14 @@ const onRequest = (config) => {
 
 const onResponse = (res) => res.data;
 
-const onRequestError = (err) => Promise.reject(err);
+const onRequestError = (err) => Promise.reject(err.response.data);
 
 const OnResponseError = (err) => {
   if (err.response.status === 401) {
     window.location.href = "/login";
     localStorage.clear();
   }
-  return Promise.reject(err.response.data);
+  return Promise.reject(err);
 };
 
 export function AxiosInterceptor() {

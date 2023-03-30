@@ -27,7 +27,6 @@ const Birthday = () => {
         };
         list.push(obj);
       }
-      console.log(list);
       setBirthdayList(list);
       setShowSpinner(false);
     });

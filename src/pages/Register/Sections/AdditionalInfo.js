@@ -2,7 +2,7 @@ import { Checkbox, Input } from "antd";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { ImgSuccessModal } from "../../../assets";
+import { ImgSuccessModal2 } from "../../../assets";
 import { ErrorMessage } from "../../../components/ErrorMessage/ErrorMessage";
 import { useModals } from "../../../context/ModalsContext";
 import { useRegisterContext } from "../../../context/RegisterContext";
@@ -13,7 +13,7 @@ import {
   initialValuesRegister,
 } from "../../../schemas/RegisterSchemas";
 import { base64Encrypt } from "../../../util/encryptor.util";
-import { showAlertError, showAlertSuccess } from "../../../util/util";
+import { showAlertError } from "../../../util/util";
 
 const { Password } = Input;
 
@@ -38,7 +38,7 @@ const AdditionalInfo = () => {
     setConfig((prev) => ({
       ...prev,
       message: "Welcome to Multimedia...",
-      image: ImgSuccessModal,
+      image: ImgSuccessModal2,
       title: "Registration Success!",
     }));
     setTimeout(() => {

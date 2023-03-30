@@ -8,7 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { AxiosInterceptor } from "./interceptor/axios.interceptor";
 import { BrowserRouter } from "react-router-dom";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 AxiosInterceptor();
 

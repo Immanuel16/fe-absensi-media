@@ -246,7 +246,7 @@ function Absensi() {
           <div className="flex flex-col space-y-4 px-4 pb-4 h-list-absence overflow-y-auto">
             {absenceList.map((absence) => (
               <div
-                className="shadow-card rounded-md bg-white px-4 py-3 flex flex-col space-y-3 animate__animated animate__fadeInUp"
+                className="shadow-card rounded-md bg-white px-4 py-3 flex flex-col space-y-3 animate_2.5s animate_fadeInUp"
                 key={absence.id}
               >
                 {/* date with more menu */}

@@ -2,14 +2,14 @@ import { Input } from "antd";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ImgSuccessModal } from "../../assets";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
+import { useModals } from "../../context/ModalsContext";
+import { useSpinner } from "../../context/Spinner";
 import apiHelper from "../../helper/api";
 import { initialValuesLogin, LoginSchema } from "../../schemas/LoginSchemas";
 import { base64Encrypt } from "../../util/encryptor.util";
-import { showAlertError, showAlertSuccess } from "../../util/util";
-import { useModals } from "../../context/ModalsContext";
-import { ImgSuccessModal } from "../../assets";
-import { useSpinner } from "../../context/Spinner";
+import { showAlertError } from "../../util/util";
 
 const { Password } = Input;
 
@@ -43,7 +43,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (token) navigate("/");
+    // if (token) navigate("/");
   }, []);
 
   const login = async (body) => {
@@ -63,12 +63,11 @@ export default function Login() {
         localStorage.setItem("role", data.role);
         navigate("/");
         showModalSuccess();
-        // showAlertSuccess("Login berhasil");
       })
-      .catch((err) => {
+      .catch(({ response }) => {
         setShowSpinner(false);
         setDisableButton((prev) => !prev);
-        showAlertError(err.message);
+        showAlertError(response.data.message);
       });
   };
 
@@ -78,23 +77,13 @@ export default function Login() {
         <h1 className="text-lg">Sistem Administratif Media</h1>
       </div>
       <div className="px-6">
-        <h1
-          className="text-2xl font-semibold mb-7 text-media-secondary-blue"
-          data-aos="fade-up"
-          data-aos-anchor-placement="top-bottom"
-          data-aos-duration="1200"
-        >
+        <h1 className="text-2xl font-semibold mb-7 text-media-secondary-blue animate_1s animate_fadeInUp">
           Masuk ke akunmu
         </h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="space-y-7 mb-24">
             {/* input username */}
-            <div
-              className="flex flex-col space-y-1"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="1500"
-            >
+            <div className="flex flex-col space-y-1 animate_1.5s animate_fadeInUp">
               <label htmlFor="username">Username</label>
               <Input
                 name="username"
@@ -116,12 +105,7 @@ export default function Login() {
             </div>
 
             {/* input password */}
-            <div
-              className="flex flex-col space-y-1"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="2000"
-            >
+            <div className="flex flex-col space-y-1 animate_2s animate_fadeInUp">
               <label htmlFor="password">Password</label>
               <Password
                 name="password"
@@ -143,12 +127,9 @@ export default function Login() {
             </div>
           </div>
           <button
-            className="w-full bg-media-primary-blue rounded-btn py-3 text-white text-sm font-medium"
+            className="w-full bg-media-primary-blue rounded-btn py-3 text-white text-sm font-medium animate_2.5s animate_fadeInUp"
             type="submit"
             disabled={!(formik.isValid && formik.dirty) || disableButton}
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-bottom"
-            data-aos-duration="2500"
           >
             Masuk
           </button>

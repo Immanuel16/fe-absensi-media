@@ -99,16 +99,11 @@ const FormRecruitment = () => {
           onSubmit={formik.handleSubmit}
         >
           <div
-            className="flex flex-col space-y-4 w-full overflow-y-auto overflow-x-hidden mt-14 mb-4"
+            className="flex flex-col space-y-4 w-full overflow-y-auto overflow-x-hidden mt-14 mb-10"
             style={{ height: "calc(100vh - 320px)" }}
           >
             {/* input nama lengkap */}
-            <div
-              className="flex flex-col space-y-1 w-full"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="1500"
-            >
+            <div className="flex flex-col space-y-1 w-full animate_1.5s animate_fadeInUp">
               <label htmlFor="name" className="text-media-primary-black">
                 Nama Lengkap
               </label>
@@ -132,12 +127,7 @@ const FormRecruitment = () => {
             </div>
 
             {/* input nomor whatsapp */}
-            <div
-              className="flex flex-col space-y-1 w-full"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="1500"
-            >
+            <div className="flex flex-col space-y-1 w-full animate_1.5s animate_fadeInUp">
               <label htmlFor="phone" className="text-media-primary-black">
                 Nomor Whatsapp
               </label>
@@ -161,12 +151,7 @@ const FormRecruitment = () => {
             </div>
 
             {/* input pekerjaan */}
-            <div
-              className="flex flex-col space-y-1 w-full"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="1500"
-            >
+            <div className="flex flex-col space-y-1 w-full animate_1.5s animate_fadeInUp">
               <label htmlFor="job" className="text-media-primary-black">
                 Pekerjaan
               </label>
@@ -190,12 +175,7 @@ const FormRecruitment = () => {
             </div>
 
             {/* input usia */}
-            <div
-              className="flex flex-col space-y-1 w-full"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="1500"
-            >
+            <div className="flex flex-col space-y-1 w-full animate_1.5s animate_fadeInUp">
               <label htmlFor="age" className="text-media-primary-black">
                 Usia
               </label>
@@ -219,12 +199,7 @@ const FormRecruitment = () => {
             </div>
 
             {/* input minat pelayanan */}
-            <div
-              className="flex flex-col space-y-1"
-              data-aos="fade-up"
-              data-aos-anchor-placement="top-bottom"
-              data-aos-duration="1500"
-            >
+            <div className="flex flex-col space-y-1 animate_1.5s animate_fadeInUp">
               <label htmlFor="role" className="text-media-primary-black">
                 Minat Pelayanan
               </label>
@@ -259,12 +234,9 @@ const FormRecruitment = () => {
           </div>
 
           <button
-            className="w-full bg-media-primary-blue rounded-btn py-3 text-white text-sm font-medium"
+            className="w-full bg-media-primary-blue rounded-btn py-3 text-white text-sm font-medium animate_2s animate_fadeInUp"
             type="submit"
             disabled={!(formik.isValid && formik.dirty)}
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-bottom"
-            data-aos-duration="2500"
           >
             Kirim
           </button>

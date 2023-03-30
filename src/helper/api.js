@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const apiHelper = Axios.create({
-  baseURL: process.env.REACT_APP_URL_API_PROD,
+  baseURL: process.env.REACT_APP_URL_API_LOCAL,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
