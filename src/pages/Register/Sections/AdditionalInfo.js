@@ -74,10 +74,10 @@ const AdditionalInfo = () => {
         navigate("/login");
       }, 2500);
       // showAlertSuccess("Registrasi berhasil");
-    } catch (error) {
+    } catch ({ response }) {
       setShowSpinner(false);
       setDisableButton((prev) => !prev);
-      showAlertError(error.message);
+      showAlertError(response.data.message);
     }
   };
 

@@ -52,8 +52,8 @@ const FormRecruitment = () => {
         helper.resetForm(value);
         navigate("/form-recruitment");
       })
-      .catch((err) => {
-        showAlertError(err.message);
+      .catch(({ response }) => {
+        showAlertError(response.data.message);
       });
   };
   return (
