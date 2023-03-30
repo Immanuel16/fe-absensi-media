@@ -17,6 +17,7 @@ module.exports = {
         btn: "25px",
         input: "8px",
         card: "20px",
+        header: "36px",
       },
       boxShadow: ({ boxShadow }) => ({
         ...boxShadow,

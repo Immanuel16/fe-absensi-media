@@ -14,7 +14,16 @@ import {
   showAlertSuccess,
 } from "../../../util/util";
 import "./FormRecruitment.scss";
-import RecruitmentIcon from "../../../assets/icons/recruitment/";
+import {
+  CameraSlrIcon,
+  CheckIcon,
+  DoubleCircleIcon,
+  MediaPlayIcon,
+  MediaSkipIcon,
+  MusicIcon,
+  PersonIcon,
+  PowerStandbyIcon,
+} from "../../../assets/icons/recruitment/";
 
 const FormRecruitment = () => {
   const navigate = useNavigate();
@@ -49,10 +58,41 @@ const FormRecruitment = () => {
   };
   return (
     <>
-      <div
-        className="h-screen bg-media-primary-blue relative"
-        style={{ paddingTop: "159px" }}
-      >
+      <div className="h-screen bg-media-primary-blue">
+        <div
+          className="flex items-center justify-center relative text-2xl text-white font-bold"
+          style={{ height: "130px" }}
+        >
+          <img src={PersonIcon} className="absolute top-3 left-3.5" />
+          <img src={MusicIcon} className="absolute top-3 left-1/3" />
+          <img src={MediaSkipIcon} className="absolute top-5 right-1/3" />
+          <img
+            src={MediaPlayIcon}
+            className="absolute top-4 right-5"
+            style={{ right: "21.23px" }}
+          />
+
+          <img src={DoubleCircleIcon} className="absolute bottom-3 left-8" />
+          <img
+            src={PowerStandbyIcon}
+            className="absolute bottom-7"
+            style={{ left: "43%" }}
+          />
+
+          <img
+            src={CameraSlrIcon}
+            className="absolute bottom-3.5"
+            style={{ right: "98.61px" }}
+          />
+
+          <img
+            src={CheckIcon}
+            className="absolute bottom-6"
+            style={{ right: "14.23px" }}
+          />
+
+          <p>Form Recruitment Crew</p>
+        </div>
         <form
           className="shadow-2xl bg-white px-4 flex flex-col h-form-recruitment"
           style={{ borderTopRightRadius: "55px", borderTopLeftRadius: "55px" }}
@@ -226,7 +266,7 @@ const FormRecruitment = () => {
             data-aos-anchor-placement="top-bottom"
             data-aos-duration="2500"
           >
-            Masuk
+            Kirim
           </button>
         </form>
       </div>

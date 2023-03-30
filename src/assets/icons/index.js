@@ -276,6 +276,60 @@ const CloseSvg = () => (
   </svg>
 );
 
+const AdminSvg = () => (
+  <svg
+    width="26"
+    height="26"
+    viewBox="0 0 26 26"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g filter="url(#filter0_d_419_822)">
+      <path
+        d="M11.5 0C8.59 0 5.98 1.2 4.09 3.09L13 12V0.09C12.52 0.03 12.01 0 11.5 0ZM16 3.18V13.41L7.84 21.57C9.67 23.07 11.95 24 14.5 24C20.29 24 25 19.29 25 13.5C25 8.22 21.07 3.93 16 3.18ZM3.73 7.11C2.05 8.73 1 10.98 1 13.5C1 16.38 2.38 18.87 4.48 20.52L10.87 14.13L3.73 7.11Z"
+        fill="#2ADAF2"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d_419_822"
+        x="0"
+        y="0"
+        width="26"
+        height="26"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="1" />
+        <feGaussianBlur stdDeviation="0.5" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_419_822"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_419_822"
+          result="shape"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
+
 /* ----- END OF SVG ----- */
 
 /* icon */
@@ -287,6 +341,8 @@ const CashMenuIcon = (props) => <Icon component={CashSvg} {...props} />;
 
 const AccountMenuIcon = (props) => <Icon component={AccountSvg} {...props} />;
 
+const AdminMenuIcon = (props) => <Icon component={AdminSvg} {...props} />;
+
 const SearchIcon = (props) => <Icon component={SearchSvg} {...props} />;
 const MoreMenuIcon = (props) => <Icon component={MoreMenuSvg} {...props} />;
 const CloseIcon = (props) => <Icon component={CloseSvg} {...props} />;
@@ -294,6 +350,7 @@ const CloseIcon = (props) => <Icon component={CloseSvg} {...props} />;
 export {
   AbsenceMenuIcon,
   AccountMenuIcon,
+  AdminMenuIcon,
   CashMenuIcon,
   CloseIcon,
   HomeMenuIcon,

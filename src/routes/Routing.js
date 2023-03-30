@@ -10,6 +10,7 @@ import SpinnerProvider from "../context/Spinner";
 import Absensi from "../pages/Absensi/Absensi";
 import AddAbsence from "../pages/Absensi/AddAbsence/AddAbsence";
 import Account from "../pages/Account/Account";
+import Admin from "../pages/Admin/Admin";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import FormRecruitment from "../pages/Recruitment/FormRecruitment/FormRecruitment";
@@ -37,8 +38,13 @@ const Routing = () => {
         >
           <Route path="/" element={<Home />} />
           <Route path="account" element={<Account />} />
+
+          {/* absence routes */}
           <Route path="absen" element={<Absensi />} />
           <Route path="absen/create" element={<AddAbsence />} />
+
+          {/* admin routes */}
+          <Route path="admin" element={<Admin />} />
         </Route>
 
         {/* public routes */}

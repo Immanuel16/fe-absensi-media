@@ -5,14 +5,16 @@ import {
   AbsenceMenuIcon,
   AccountMenuIcon,
   CashMenuIcon,
+  AdminMenuIcon,
 } from "../../assets/icons";
 
 export const FloatingMenu = () => {
   const location = useLocation();
+  const role = localStorage.getItem("role");
   const navigate = useNavigate();
   return (
     <div className="w-full fixed bottom-0">
-      <div className="max-w-480 bg-white z-30 shadow-menu">
+      <div className="max-w-480 bg-white z-30 shadow-menu rounded-t-xl">
         <div className="flex justify-around py-3">
           <button
             className="flex flex-col justify-center items-center"
@@ -36,6 +38,7 @@ export const FloatingMenu = () => {
             </p>
           </button>
 
+          {/* Menu Absen */}
           <button
             className="flex flex-col justify-center items-center "
             onClick={() => navigate("/absen")}
@@ -60,6 +63,34 @@ export const FloatingMenu = () => {
             </p>
           </button>
 
+          {/* Menu Admin */}
+          {+role && (
+            <button
+              className="flex flex-col justify-center items-center "
+              onClick={() => navigate("/absen")}
+            >
+              <div
+                className={`rounded-full w-10 h-10 flex items-center justify-center ${
+                  location.pathname.includes("admin")
+                    ? "bg-media-secondary-blue-2 p-3"
+                    : ""
+                }`}
+              >
+                <AdminMenuIcon />
+              </div>
+              <p
+                className={`${
+                  location.pathname.includes("admin")
+                    ? "text-media-primary-blue"
+                    : "text-media-primary-black"
+                } text-xxs`}
+              >
+                Admin
+              </p>
+            </button>
+          )}
+
+          {/* Menu Kas */}
           <button
             className="flex flex-col justify-center items-center"
             onClick={() => navigate("/cash")}
