@@ -1,6 +1,6 @@
 import { DatePicker, Select } from "antd";
+import dayjs from "dayjs";
 import { useFormik } from "formik";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { ErrorMessage } from "../../../components/ErrorMessage/ErrorMessage";
@@ -12,6 +12,7 @@ import {
   initialValuesAbsence,
 } from "../../../schemas/AbsenceSchemas";
 import {
+  convertDate,
   dateFormat,
   showAlertError,
   showAlertSuccess,
@@ -22,15 +23,16 @@ const AddAbsence = () => {
   const { setTitleHeader } = useHeader();
   const { setShowSpinner } = useSpinner();
   const navigate = useNavigate();
+  const [absence, setAbsence] = useState(initialValuesAbsence);
 
   const { id } = useParams();
-  const today = moment().add(1, "days").format("YYYY-MM-DD");
+  const today = dayjs().format(dateFormat.value);
 
   const [scheduleList, setScheduleList] = useState([]);
   const [userList, setUserList] = useState([]);
 
   const formik = useFormik({
-    initialValues: initialValuesAbsence,
+    initialValues: id ? absence : initialValuesAbsence,
     validationSchema: AbsenceSchemas,
 
     onSubmit: (values) => {
@@ -38,6 +40,15 @@ const AddAbsence = () => {
     },
   });
 
+  const getDetailAbsence = async () => {
+    apiHelper
+      .get(`/apps/absensi/${id}/detail`)
+      .then(({ data }) => {
+        formik.setValues(data);
+        setAbsence(initialValuesAbsence(data));
+      })
+      .catch((err) => {});
+  };
   const getListScheduleMinistry = async () => {
     apiHelper
       .get("/public/ministries-schedule")
@@ -68,7 +79,7 @@ const AddAbsence = () => {
       });
   };
 
-  const saveData = async (value) => {
+  const addAbsence = async (value) => {
     delete value.id;
     setShowSpinner(true);
     try {
@@ -84,10 +95,36 @@ const AddAbsence = () => {
     }
   };
 
+  const editAbsence = async (value) => {
+    delete value.id;
+    delete value.created_by;
+    delete value.updated_by;
+    delete value.createdAt;
+    delete value.updatedAt;
+    setShowSpinner(true);
+    apiHelper
+      .put(`/apps/absensi/${id}/edit`, value)
+      .then(() => {
+        setTimeout(() => {
+          setShowSpinner(false);
+        }, 1000);
+        showAlertSuccess("Absen berhasil diubah");
+        navigate("/absen");
+      })
+      .catch(({ response }) => {
+        showAlertError(response.data.message);
+        setShowSpinner(false);
+      });
+  };
+
+  const saveData = async (value) => {
+    id ? editAbsence(value) : addAbsence(value);
+  };
+
   const onChangeField = (name, e) => {
     formik.setFieldValue(
       name,
-      name === "tanggal" ? moment(e).format(dateFormat.value) : e
+      name === "tanggal" ? convertDate(e, dateFormat.value) : e
     );
   };
 
@@ -97,6 +134,7 @@ const AddAbsence = () => {
 
   useEffect(() => {
     setTitleHeader(`${id ? "Edit" : "Tambah"} Absen`);
+    id && getDetailAbsence();
     getListScheduleMinistry();
     getListUser();
   }, []);
@@ -127,6 +165,8 @@ const AddAbsence = () => {
             name="tanggal"
             onBlur={(e) => onBlurField("tanggal")}
             inputReadOnly={true}
+            // value={id && dayjs(formik.values.tanggal, dateFormat.value)}
+            value={id && dayjs(formik.values.tanggal, dateFormat.value)}
           />
           <ErrorMessage
             show={formik.touched.tanggal && formik.errors.tanggal}
@@ -163,7 +203,7 @@ const AddAbsence = () => {
               }
               options={scheduleList}
               className="w-full"
-              value={id && formik.values.ir}
+              value={id && absence.ir}
             />
           </div>
           <ErrorMessage
@@ -239,7 +279,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={id && formik.values.kom2}
+              value={(id && formik.values.kom2) || null}
             />
           </div>
           <ErrorMessage
@@ -338,7 +378,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={id && formik.values.cam2}
+              value={(id && formik.values.cam2) || null}
             />
           </div>
           <ErrorMessage
@@ -371,7 +411,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={id && formik.values.cam3}
+              value={(id && formik.values.cam3) || null}
             />
           </div>
           <ErrorMessage
@@ -404,7 +444,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={id && formik.values.switcher}
+              value={(id && formik.values.switcher) || null}
             />
           </div>
           <ErrorMessage
@@ -427,7 +467,7 @@ const AddAbsence = () => {
               bordered={false}
               showSearch
               onBlur={() => onBlurField("photo")}
-              placeholder="Pilih fotografer"
+              placeholder="Pilih photographer"
               optionFilterProp="children"
               onChange={(value) => onChangeField("photo", value)}
               filterOption={(input, option) =>
@@ -437,7 +477,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={id && formik.values.photo}
+              value={(id && formik.values.photo) || null}
             />
           </div>
           <ErrorMessage
@@ -503,7 +543,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={id && formik.values.sound2}
+              value={(id && formik.values.sound2) || null}
             />
           </div>
           <ErrorMessage

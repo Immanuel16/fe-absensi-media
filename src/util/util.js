@@ -1,23 +1,23 @@
-import * as moment from "moment";
-import "moment/locale/id";
+import "dayjs/locale/id";
 import { toast } from "react-toastify";
+import dayjs from "dayjs";
 
 const getFilterMonthRange = () => {
   const year = new Date().getFullYear();
   let rangeList = [];
-  moment.locale("id");
+  dayjs.locale("id");
   for (let month = 1; month <= 12; month++) {
-    let startDate = moment([year, month - 1]).format("YYYY-MM-DD");
-    let endDate = moment(startDate).endOf("month").format("YYYY-MM-DD");
-    let monthName = moment([year, month - 1]).format("MMMM");
+    let startDate = dayjs([year, month]).format("YYYY-MM-DD");
+    let endDate = dayjs(startDate).endOf("month").format("YYYY-MM-DD");
+    let monthName = dayjs([year, month]).format("MMMM");
     rangeList.push({ start: startDate, end: endDate, month: monthName });
   }
   return rangeList;
 };
 
 const convertDate = (date, format = dateFormat.display) => {
-  moment.locale("id");
-  return moment(date).format(format);
+  dayjs.locale("id");
+  return dayjs(date).format(format);
 };
 
 const dateFormat = {

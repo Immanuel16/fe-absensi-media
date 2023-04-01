@@ -1,7 +1,7 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
+import dayjs from "dayjs";
 import { debounce } from "lodash";
-import moment from "moment";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ImgEmptyAbsence } from "../../assets";
@@ -34,7 +34,7 @@ const ContentMoreMenu = ({ edit, deleteAbsence }) => (
 
 function Absensi() {
   const navigate = useNavigate();
-  const [month, setMonth] = useState(moment().format("MMMM"));
+  const [month, setMonth] = useState(convertDate(dayjs(), "MMMM"));
   const { setTitleHeader } = useHeader();
   const { setShowSpinner } = useSpinner();
 
@@ -164,7 +164,9 @@ function Absensi() {
     setDetailAbsence(initialValuesAbsence);
   };
 
-  const editAbsence = () => {};
+  const editAbsence = () => {
+    navigate(`${selectedId}/edit`);
+  };
 
   const deleteAbsence = () => {
     setShowSpinner(true);

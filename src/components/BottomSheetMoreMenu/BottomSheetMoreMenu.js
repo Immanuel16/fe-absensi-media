@@ -8,8 +8,8 @@ const BottomSheetMoreMenu = ({ content, open, closeModal }) => {
         <section className="fixed width-bottom-sheet z-50 inset-0 overflow-x-hidden overflow-y-hidden mt-auto bottom-0">
           <div className="flex items-end min-h-full text-center sm:p-0 bg-gray-900 bg-opacity-40">
             <div
-              className={`animate__animated rounded-t-3xl inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:align-middle max-w w-full ${
-                open ? "animate__fadeInUp" : "animate__fadeOutDown"
+              className={`rounded-t-3xl inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:align-middle max-w w-full ${
+                open ? "animate_1.5s animate_fadeInUp" : "animate__fadeOutDown"
               }`}
             >
               <div className="overflow-y-hidden py-6 px-4">

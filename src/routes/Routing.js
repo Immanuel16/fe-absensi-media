@@ -42,6 +42,7 @@ const Routing = () => {
           {/* absence routes */}
           <Route path="absen" element={<Absensi />} />
           <Route path="absen/create" element={<AddAbsence />} />
+          <Route path="absen/:id/edit" element={<AddAbsence />} />
 
           {/* admin routes */}
           <Route path="admin" element={<Admin />} />

@@ -8,10 +8,10 @@ import {
 } from "../../../schemas/RegisterSchemas";
 import { DownOutlined } from "@ant-design/icons";
 import { dateFormat } from "../../../util/util";
-import moment from "moment";
 import "../Register.scss";
 import { useRegisterContext } from "../../../context/RegisterContext";
 import apiHelper from "../../../helper/api";
+import dayjs from "dayjs";
 
 const PrivacyInfo = () => {
   const { setActiveStepIndex, setRegisterData, registerData } =
@@ -47,7 +47,7 @@ const PrivacyInfo = () => {
   const onChangeField = (name, e) => {
     formik.setFieldValue(
       name,
-      name === "birth_date" ? moment(e).format(dateFormat.value) : e
+      name === "birth_date" ? dayjs(e).format(dateFormat.value) : e
     );
   };
 

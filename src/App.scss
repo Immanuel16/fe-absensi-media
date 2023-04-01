@@ -309,3 +309,7 @@ input.ant-checkbox-input {
     animation-duration: 2.5s;
   }
 }
+
+.datepicker-custom.ant-picker .ant-picker-input>input {
+  @apply text-xs;
+}

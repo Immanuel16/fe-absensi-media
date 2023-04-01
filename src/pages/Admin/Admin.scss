@@ -2,4 +2,18 @@
   &-birthday {
     height: calc(100vh - 270px);
   }
+
+  &-bank {
+    height: calc(100vh - 316px);
+  }
+}
+
+.grid {
+  &-bank {
+    display: grid;
+    grid-template-columns: 15% 30% 30% 10%;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
 }
