@@ -12,6 +12,10 @@ const Admin = () => {
     setTitleHeader(`List ${+role === 2 ? "Ulang Tahun" : "Bank"}`);
   }, []);
 
+  useEffect(() => {
+    setTitleHeader(`List ${tab === 2 ? "Ulang Tahun" : "Bank"}`);
+  }, [tab]);
+
   return (
     <>
       <div className="flex flex-col space-y-4 px-4">
@@ -51,6 +55,7 @@ const Admin = () => {
                     "border-b-2 border-b-media-primary-orange pb-0.5") ||
                   "pb-1"
                 }`}
+                onClick={() => setTab(2)}
               >
                 Ulang Tahun
               </button>
@@ -68,6 +73,7 @@ const Admin = () => {
                     "border-b-2 border-b-media-primary-orange pb-0.5") ||
                   "pb-1"
                 }`}
+                onClick={() => setTab(3)}
               >
                 Bank
               </button>
