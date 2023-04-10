@@ -11,6 +11,7 @@ import Absensi from "../pages/Absensi/Absensi";
 import AddAbsence from "../pages/Absensi/AddAbsence/AddAbsence";
 import Account from "../pages/Account/Account";
 import Admin from "../pages/Admin/Admin";
+import Cash from "../pages/Cash/Cash";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import FormRecruitment from "../pages/Recruitment/FormRecruitment/FormRecruitment";
@@ -46,6 +47,9 @@ const Routing = () => {
 
           {/* admin routes */}
           <Route path="admin" element={<Admin />} />
+
+          {/* cash routes */}
+          <Route path="cash" element={<Cash />} />
         </Route>
 
         {/* public routes */}

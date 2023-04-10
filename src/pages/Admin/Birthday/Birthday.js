@@ -14,7 +14,11 @@ const Birthday = () => {
         d.full_name = d.full_name.toLowerCase();
         d.username = d.username.toLowerCase();
         return d;
-      });
+      })
+      .sort(
+        (a, b) =>
+          convertDate(a.birth_date, "DD") - convertDate(b.birth_date, "DD")
+      );
 
   const getListBirthday = async () => {
     setShowSpinner(true);

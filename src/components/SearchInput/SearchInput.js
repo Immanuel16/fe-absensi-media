@@ -10,7 +10,7 @@ const SearchInput = ({ name, value, onChange }) => {
         name={name}
         value={value}
         placeholder="Cari ..."
-        className="text-xs search"
+        className="text-xs search w-full"
         onChange={onChange}
       />
       <SearchIcon />

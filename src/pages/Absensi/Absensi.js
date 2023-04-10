@@ -1,4 +1,5 @@
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, CloudDownloadOutlined } from "@ant-design/icons";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Pagination } from "antd";
 import dayjs from "dayjs";
 import { debounce } from "lodash";
@@ -6,6 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ImgEmptyAbsence } from "../../assets";
 import { MoreMenuIcon } from "../../assets/icons";
+import AbsenceReport from "../../components/AbsenceReport/AbsenceReport";
 import BottomSheetMoreMenu from "../../components/BottomSheetMoreMenu/BottomSheetMoreMenu";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import { useHeader } from "../../context/Header";
@@ -33,6 +35,7 @@ const ContentMoreMenu = ({ edit, deleteAbsence }) => (
 );
 
 function Absensi() {
+  const role = localStorage.getItem("role");
   const navigate = useNavigate();
   const [month, setMonth] = useState(convertDate(dayjs(), "MMMM"));
   const { setTitleHeader } = useHeader();
@@ -53,6 +56,11 @@ function Absensi() {
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
   const [detailAbsence, setDetailAbsence] = useState(initialValuesAbsence);
+
+  /* reports */
+  const [absenceReport, setAbsenceReport] = useState([]);
+  const [totalMinistry, setTotalMinistry] = useState(0);
+  const [users, setUsers] = useState([]);
 
   const [selectedId, setSelectedId] = useState("");
 
@@ -109,6 +117,29 @@ function Absensi() {
         showAlertError(err.message);
         setShowSpinner(false);
       });
+  };
+
+  /* for report */
+  const getListAbsenceReport = async () => {
+    apiHelper
+      .get(
+        `/apps/absensi/reports?start_date=${filterMonth.startDate}&end_date=${filterMonth.endDate}`
+      )
+      .then(({ data }) => setAbsenceReport(data))
+      .catch((err) => console.log(err));
+  };
+
+  const getTotalCrewMinistryReport = async () => {
+    apiHelper
+      .get(
+        `/apps/users/total-ministry-report?start_date=${filterMonth.startDate}&end_date=${filterMonth.endDate}`
+      )
+      .then(({ data }) => {
+        const total = data.reduce((sum, { total }) => sum + total, 0);
+        setUsers(data);
+        setTotalMinistry(total);
+      })
+      .catch((err) => console.log(err));
   };
 
   const seeDetailAbsence = async (id) => {
@@ -187,6 +218,13 @@ function Absensi() {
     getListAbsensi();
     setTitleHeader("Absensi");
   }, []);
+
+  useEffect(() => {
+    if (+role === 1 || +role === 3) {
+      getListAbsenceReport();
+      getTotalCrewMinistryReport();
+    }
+  }, [filterMonth.startDate]);
   return (
     <>
       <div className="flex flex-col space-y-4" id="listAbsence">
@@ -231,6 +269,43 @@ function Absensi() {
                   </div>
                 )}
               </div>
+
+              {/* button download */}
+              {(+role === 1 || +role === 3) && absenceReport.length > 0 && (
+                <button
+                  className="px-3 bg-media-primary-green py-1.5 rounded-btn text-white font-semibold"
+                  disabled={absenceReport.length < 1}
+                >
+                  <PDFDownloadLink
+                    document={
+                      <AbsenceReport
+                        absence={absenceReport}
+                        users={users}
+                        totalMinistry={totalMinistry}
+                        month={convertDate(
+                          filterMonth.startDate || dayjs(),
+                          "MMMM YYYY"
+                        )}
+                      />
+                    }
+                    fileName={`Laporan PK Media ${convertDate(
+                      filterMonth.startDate || dayjs(),
+                      "MMMM YYYY"
+                    )}`}
+                  >
+                    {({ blob, url, loading, error }) =>
+                      loading ? (
+                        "Loading..."
+                      ) : (
+                        <div className="flex items-center space-x-1.5">
+                          <CloudDownloadOutlined color="#fff" />
+                          <p>Download</p>
+                        </div>
+                      )
+                    }
+                  </PDFDownloadLink>
+                </button>
+              )}
 
               {/* button add */}
               <button

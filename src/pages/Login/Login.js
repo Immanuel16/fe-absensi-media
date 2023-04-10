@@ -43,7 +43,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    // if (token) navigate("/");
+    if (token) navigate("/");
   }, []);
 
   const login = async (body) => {
@@ -73,8 +73,8 @@ export default function Login() {
 
   return (
     <>
-      <div className="mb-7 h-28 bg-media-secondary-blue text-white flex flex-col justify-end items-start px-4 py-3 rounded-b-xl">
-        <h1 className="text-lg">Sistem Administratif Media</h1>
+      <div className="mb-7 h-28 bg-media-primary-blue text-white flex flex-col justify-end items-start px-4 py-3 rounded-b-xl">
+        <h1 className="text-lg font-semibold">Sistem Administratif Media</h1>
       </div>
       <div className="px-6">
         <h1 className="text-2xl font-semibold mb-7 text-media-secondary-blue animate_1s animate_fadeInUp">

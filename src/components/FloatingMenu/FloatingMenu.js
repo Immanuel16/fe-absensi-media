@@ -64,7 +64,7 @@ export const FloatingMenu = () => {
           </button>
 
           {/* Menu Admin */}
-          {+role && (
+          {+role !== 0 && (
             <button
               className="flex flex-col justify-center items-center "
               onClick={() => navigate("/admin")}

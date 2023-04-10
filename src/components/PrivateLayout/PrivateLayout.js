@@ -24,7 +24,7 @@ const PrivateLayout = () => {
 
   const getDataUser = async () => {
     try {
-      const data = await apiHelper.get("/apps/users/detail");
+      const { data } = await apiHelper.get("/apps/accounts");
       setUser(data);
     } catch (error) {
       console.log("error");
@@ -34,6 +34,7 @@ const PrivateLayout = () => {
   useEffect(() => {
     getDataUser();
   }, []);
+
   return (
     <div className="relative">
       {/* header */}

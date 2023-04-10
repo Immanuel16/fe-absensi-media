@@ -104,6 +104,12 @@ const ContentDetailAbsence = ({ info }) => (
           <p className="capitalize">{info.sound2 || "-"}</p>
         </div>
       )}
+
+      {/* PIC */}
+      <div className="flex justify-between">
+        <p className="text-media-primary-gray font-semibold">PIC</p>
+        <p className="capitalize">{info.created_by || "-"}</p>
+      </div>
     </div>
   </div>
 );

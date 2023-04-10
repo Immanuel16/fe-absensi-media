@@ -26,13 +26,13 @@ const AddAbsence = () => {
   const [absence, setAbsence] = useState(initialValuesAbsence);
 
   const { id } = useParams();
-  const today = dayjs().format(dateFormat.value);
+  const today = dayjs().add(1, "days").format(dateFormat.value);
 
   const [scheduleList, setScheduleList] = useState([]);
   const [userList, setUserList] = useState([]);
 
   const formik = useFormik({
-    initialValues: id ? absence : initialValuesAbsence,
+    initialValues: initialValuesAbsence,
     validationSchema: AbsenceSchemas,
 
     onSubmit: (values) => {
@@ -45,6 +45,7 @@ const AddAbsence = () => {
       .get(`/apps/absensi/${id}/detail`)
       .then(({ data }) => {
         formik.setValues(data);
+        formik.values.photo = formik.values.photo ? formik.values.photo : null;
         setAbsence(initialValuesAbsence(data));
       })
       .catch((err) => {});
@@ -126,6 +127,7 @@ const AddAbsence = () => {
       name,
       name === "tanggal" ? convertDate(e, dateFormat.value) : e
     );
+    console.log(name, e);
   };
 
   const onBlurField = (name) => {
@@ -140,7 +142,7 @@ const AddAbsence = () => {
   }, []);
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-6 px-6">
-      <div className="flex flex-col space-y-4 overflow-y-auto h-form-absence bg-white shadow-card py-6 px-3 rounded-card rounded-t-none">
+      <div className="flex flex-col space-y-6 overflow-y-auto h-form-absence bg-white shadow-card py-6 px-3 rounded-card rounded-t-none">
         {/* input tanggal pelayanan */}
         <div className="flex flex-col space-y-1">
           <label
@@ -154,7 +156,7 @@ const AddAbsence = () => {
             onChange={(date, dateString) =>
               onChangeField("tanggal", dateString)
             }
-            disabledDate={(d) => !d || d.isAfter(today)}
+            disabledDate={(d) => !d || (today && d.isAfter(today + 1))}
             className={`datepicker-custom ${
               formik.touched.tanggal && formik.errors.tanggal
                 ? "border-media-danger-3"
@@ -203,7 +205,7 @@ const AddAbsence = () => {
               }
               options={scheduleList}
               className="w-full"
-              value={id && absence.ir}
+              value={id && formik.values.ir}
             />
           </div>
           <ErrorMessage
@@ -279,7 +281,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={(id && formik.values.kom2) || null}
+              value={id && formik.values.kom2}
             />
           </div>
           <ErrorMessage
@@ -378,7 +380,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={(id && formik.values.cam2) || null}
+              value={id && formik.values.cam2}
             />
           </div>
           <ErrorMessage
@@ -411,7 +413,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={(id && formik.values.cam3) || null}
+              value={id && formik.values.cam3}
             />
           </div>
           <ErrorMessage
@@ -444,7 +446,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={(id && formik.values.switcher) || null}
+              value={id && formik.values.switcher}
             />
           </div>
           <ErrorMessage
@@ -477,7 +479,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={(id && formik.values.photo) || null}
+              value={id && formik.values.photo}
             />
           </div>
           <ErrorMessage
@@ -543,7 +545,7 @@ const AddAbsence = () => {
               }
               options={userList}
               className="w-full"
-              value={(id && formik.values.sound2) || null}
+              value={id && formik.values.sound2}
             />
           </div>
           <ErrorMessage

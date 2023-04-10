@@ -7,7 +7,7 @@ import Birthday from "./Birthday/Birthday";
 const Admin = () => {
   const role = localStorage.getItem("role");
   const { setTitleHeader } = useHeader();
-  const [tab, setTab] = useState(+role === 2 ? +role : 3);
+  const [tab, setTab] = useState(+role === 1 ? 0 : +role === 2 ? +role : 3);
   useEffect(() => {
     setTitleHeader(`List ${+role === 2 ? "Ulang Tahun" : "Bank"}`);
   }, []);
@@ -15,6 +15,16 @@ const Admin = () => {
   useEffect(() => {
     setTitleHeader(`List ${tab === 2 ? "Ulang Tahun" : "Bank"}`);
   }, [tab]);
+
+  const printHeaderName = () => {
+    switch (tab) {
+      case 0:
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <>
@@ -24,7 +34,7 @@ const Admin = () => {
           {(+role === 1 || +role === 2) && (
             <>
               {/* tab crew */}
-              {/* <button
+              <button
                 type="button"
                 className={`text-sm pt-1 ${
                   (tab === 0 &&
@@ -33,7 +43,7 @@ const Admin = () => {
                 }`}
               >
                 Crew
-              </button> */}
+              </button>
 
               {/* tab training */}
               {/* <button
@@ -90,7 +100,7 @@ const Admin = () => {
             </div>
           )}
 
-          {/* Content Birthday */}
+          {/* Content Bank */}
           {tab === 3 && (
             <div className="pb-4 overflow-y-auto">
               <Bank />

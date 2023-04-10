@@ -63,29 +63,41 @@ const FormRecruitment = () => {
           className="flex items-center justify-center relative text-2xl text-white font-bold"
           style={{ height: "130px" }}
         >
-          <img src={PersonIcon} className="absolute top-3 left-3.5" />
-          <img src={MusicIcon} className="absolute top-3 left-1/3" />
-          <img src={MediaSkipIcon} className="absolute top-5 right-1/3" />
+          <img alt="" src={PersonIcon} className="absolute top-3 left-3.5" />
+          <img alt="" src={MusicIcon} className="absolute top-3 left-1/3" />
           <img
+            alt=""
+            src={MediaSkipIcon}
+            className="absolute top-5 right-1/3"
+          />
+          <img
+            alt=""
             src={MediaPlayIcon}
             className="absolute top-4 right-5"
             style={{ right: "21.23px" }}
           />
 
-          <img src={DoubleCircleIcon} className="absolute bottom-3 left-8" />
           <img
+            alt=""
+            src={DoubleCircleIcon}
+            className="absolute bottom-3 left-8"
+          />
+          <img
+            alt=""
             src={PowerStandbyIcon}
             className="absolute bottom-7"
             style={{ left: "43%" }}
           />
 
           <img
+            alt=""
             src={CameraSlrIcon}
             className="absolute bottom-3.5"
             style={{ right: "98.61px" }}
           />
 
           <img
+            alt=""
             src={CheckIcon}
             className="absolute bottom-6"
             style={{ right: "14.23px" }}
