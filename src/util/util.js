@@ -15,6 +15,19 @@ const getFilterMonthRange = () => {
   return rangeList;
 };
 
+const getDifferentDate = (birthdate, isAge = false) => {
+  const formattedDate = birthdate.split("/");
+  const birthdays = new Date(
+    formattedDate[2],
+    formattedDate[1],
+    formattedDate[0]
+  );
+  const now = new Date();
+  const diffTime = birthdays.getTime() - now.getTime();
+  const dividedYear = isAge ? 1000 * 3600 * 24 * 365.25 : 1000 * 3600 * 24;
+  return Math.floor(diffTime / dividedYear);
+};
+
 const convertDate = (date, format = dateFormat.display) => {
   dayjs.locale("id");
   return dayjs(date).format(format);
@@ -85,6 +98,7 @@ const listRoleMinistry = [
 export {
   getFilterMonthRange,
   convertDate,
+  getDifferentDate,
   dateFormat,
   showAlertError,
   showAlertSuccess,
