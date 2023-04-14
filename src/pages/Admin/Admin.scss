@@ -16,4 +16,12 @@
     align-items: center;
     justify-content: center;
   }
+
+  &-crews {
+    display: grid;
+    grid-template-columns: 15% 15% 25% 20%;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+  }
 }
