@@ -3,27 +3,39 @@ import { useHeader } from "../../context/Header";
 import "./Admin.scss";
 import Bank from "./Bank/Bank";
 import Birthday from "./Birthday/Birthday";
+import Crew from "./Crew/Crew";
 
 const Admin = () => {
   const role = localStorage.getItem("role");
   const { setTitleHeader } = useHeader();
-  const [tab, setTab] = useState(+role === 1 ? 0 : +role === 2 ? +role : 3);
+  const [tab, setTab] = useState(+role === 1 || +role === 2 ? 0 : 3);
   useEffect(() => {
     setTitleHeader(`List ${+role === 2 ? "Ulang Tahun" : "Bank"}`);
   }, []);
 
   useEffect(() => {
-    setTitleHeader(`List ${tab === 2 ? "Ulang Tahun" : "Bank"}`);
+    printHeaderName();
   }, [tab]);
 
   const printHeaderName = () => {
+    let title = "List ";
     switch (tab) {
       case 0:
+        title += "Crew";
         break;
-
+      case 1:
+        title += "Training";
+        break;
+      case 2:
+        title += "Ulang Tahun";
+        break;
+      case 3:
+        title += "Bank";
+        break;
       default:
         break;
     }
+    setTitleHeader(title);
   };
 
   return (
@@ -41,6 +53,7 @@ const Admin = () => {
                     "border-b-2 border-b-media-primary-orange pb-0.5") ||
                   "pb-1"
                 }`}
+                onClick={() => setTab(0)}
               >
                 Crew
               </button>
@@ -93,6 +106,13 @@ const Admin = () => {
 
         {/* content tab */}
         <div className="flex flex-col space-y-4">
+          {/* Content Crews */}
+          {tab === 0 && (
+            <div className="pb-4 overflow-y-auto">
+              <Crew />
+            </div>
+          )}
+
           {/* Content Birthday */}
           {tab === 2 && (
             <div className="h-birthday pb-4 overflow-y-auto">
