@@ -420,6 +420,22 @@ const PartySvg = () => (
   </svg>
 );
 
+const TrackingSvg = () => (
+  <svg
+    width="38"
+    height="39"
+    viewBox="0 0 38 39"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="19" cy="19.5" r="19" fill="#2ADAF2" />
+    <path
+      d="M23.8363 10.8638L21.5909 13.1092L26.0818 17.6001L28.3273 15.3547L23.8363 10.8638ZM19.3454 15.3547L10.3636 24.3365V28.8274H14.8545L23.8363 19.8456L19.3454 15.3547Z"
+      fill="white"
+    />
+  </svg>
+);
+
 /* ----- END OF SVG ----- */
 
 /* icon */
@@ -438,6 +454,7 @@ const MoreMenuIcon = (props) => <Icon component={MoreMenuSvg} {...props} />;
 const CloseIcon = (props) => <Icon component={CloseSvg} {...props} />;
 const TaskIcon = (props) => <Icon component={TaskSvg} {...props} />;
 const BirthdayIcon = (props) => <Icon component={PartySvg} {...props} />;
+const TrackingIcon = (props) => <Icon component={TrackingSvg} {...props} />;
 
 export {
   AbsenceMenuIcon,
@@ -450,4 +467,5 @@ export {
   MoreMenuIcon,
   SearchIcon,
   TaskIcon,
+  TrackingIcon,
 };

@@ -82,7 +82,10 @@ export default function Account() {
             </div>
 
             {/* privacy info sections */}
-            <button className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm">
+            <button
+              onClick={() => navigate("privacy-info")}
+              className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm"
+            >
               <p>Info Pribadi</p>
               <RightOutlined />
             </button>
@@ -94,10 +97,13 @@ export default function Account() {
             </button>
 
             {/* history ministry sections */}
-            <div className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm">
+            <button
+              onClick={() => navigate("history-ministry")}
+              className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm"
+            >
               <p>History Pelayanan</p>
               <RightOutlined />
-            </div>
+            </button>
           </div>
 
           {/* button logout */}

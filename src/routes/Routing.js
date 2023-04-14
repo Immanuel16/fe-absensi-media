@@ -16,6 +16,8 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import FormRecruitment from "../pages/Recruitment/FormRecruitment/FormRecruitment";
 import Register from "../pages/Register/Register";
+import { HistoryMinistry } from "../pages/Account/HistoryMinistry/HistoryMinistry";
+import PrivacyInfoAccount from "../pages/Account/PrivacyInfoAccount/PrivacyInfoAccount";
 
 const Routing = () => {
   return (
@@ -38,7 +40,14 @@ const Routing = () => {
           }
         >
           <Route path="/" element={<Home />} />
+
+          {/* account routes */}
           <Route path="account" element={<Account />} />
+          <Route
+            path="account/history-ministry"
+            element={<HistoryMinistry />}
+          />
+          <Route path="account/privacy-info" element={<PrivacyInfoAccount />} />
 
           {/* absence routes */}
           <Route path="absen" element={<Absensi />} />
