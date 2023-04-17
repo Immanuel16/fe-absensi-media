@@ -22,6 +22,16 @@ const PrivateLayout = () => {
   const { showSpinner } = useSpinner();
   const { showModal, config } = useModals();
 
+  const checkVersionNow = () => {
+    const nowVersion = localStorage.getItem("version");
+    const latestVersion = process.env.REACT_APP_VERSIONS;
+
+    if (latestVersion !== nowVersion) {
+      localStorage.setItem("version", latestVersion);
+      window.location.reload(true);
+    }
+  };
+
   const getDataUser = async () => {
     try {
       const { data } = await apiHelper.get("/apps/accounts");
@@ -32,6 +42,7 @@ const PrivateLayout = () => {
   };
 
   useEffect(() => {
+    checkVersionNow();
     getDataUser();
   }, []);
 
