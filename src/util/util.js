@@ -14,8 +14,7 @@ const getFilterMonthRange = () => {
   }
   return rangeList;
 };
-
-const getDifferentDate = (birthdate, isAge = false) => {
+const getCrewAge = (birthdate) => {
   const formattedDate = birthdate.split("/");
   const birthdays = new Date(
     formattedDate[2],
@@ -24,8 +23,24 @@ const getDifferentDate = (birthdate, isAge = false) => {
   );
   const now = new Date();
   const diffTime = birthdays.getTime() - now.getTime();
-  const dividedYear = isAge ? 1000 * 3600 * 24 * 365.25 : 1000 * 3600 * 24;
+  const dividedYear = 1000 * 3600 * 24 * 365.25;
   return Math.floor(diffTime / dividedYear);
+};
+
+const getDifferentDate = (birthdate) => {
+  const formattedDate = birthdate.split("/");
+  const today = new Date();
+  const birthdays = new Date(
+    today.getFullYear(),
+    formattedDate[1] - 1,
+    formattedDate[0]
+  );
+  if (today.getTime() > birthdays.getTime()) {
+    birthdays.setFullYear(birthdays.getFullYear() + 1);
+  }
+  const diff = birthdays.getTime() - today.getTime();
+  const leftDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  return leftDays;
 };
 
 const convertDate = (date, format = dateFormat.display) => {
@@ -98,6 +113,7 @@ const listRoleMinistry = [
 export {
   getFilterMonthRange,
   convertDate,
+  getCrewAge,
   getDifferentDate,
   dateFormat,
   showAlertError,

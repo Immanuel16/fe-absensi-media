@@ -9,6 +9,7 @@ import ImgSuccessModal from "./img/img-modal-success.png";
 import ImgSuccessModal2 from "./img/img-modal-success-2.png";
 import ImgComingSoon from "./img/img-coming-soon.png";
 import ImgTarget from "./img/target.png";
+import ImgMaintenance from "./img/img-under-develop.png";
 import DefaultAva from "./img/ava.png";
 
 export {
@@ -19,6 +20,7 @@ export {
   DefaultAva,
   ImgComingSoon,
   ImgEmptyAbsence,
+  ImgMaintenance,
   ImgSuccessModal,
   ImgSuccessModal2,
   ImgTarget,

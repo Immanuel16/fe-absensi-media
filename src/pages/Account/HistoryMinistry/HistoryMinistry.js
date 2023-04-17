@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "../Account.scss";
-import { TrackingIcon } from "../../../assets/icons";
+import {
+  BackIcon,
+  PencilIcon,
+  TrackingIcon,
+  TrackingNonActiveIcon,
+} from "../../../assets/icons";
 import { useSpinner } from "../../../context/Spinner";
 import apiHelper from "../../../helper/api";
 import { convertDate, dateFormat, showAlertError } from "../../../util/util";
+import { useNavigate } from "react-router";
 
 export const HistoryMinistry = () => {
   const [listHistory, setListHistory] = useState([]);
+  const navigate = useNavigate();
   const { setShowSpinner } = useSpinner();
   const getAllHistory = async () => {
     setShowSpinner(true);
@@ -61,13 +68,17 @@ export const HistoryMinistry = () => {
       <div className="flex flex-col relative">
         {/* header */}
         <div
-          className="bg-media-primary-blue h-18 shadow-md sticky top-0 z-10 flex justify-center items-center text-white text-xl font-bold"
+          className="bg-media-primary-blue h-18 shadow-md sticky top-0 z-10 flex justify-between items-center text-white text-xl font-bold px-6"
           style={{
             borderBottomLeftRadius: "20px",
             borderBottomRightRadius: "20px",
           }}
         >
-          History Pelayanan
+          <button onClick={() => navigate(-1)}>
+            <BackIcon />
+          </button>
+          <p className="font-montserrat">History Pelayanan</p>
+          <p></p>
         </div>
 
         {/* history */}
@@ -76,7 +87,7 @@ export const HistoryMinistry = () => {
             {listHistory.length > 0 ? (
               listHistory.map((history, idx) => (
                 <div
-                  className="flex space-x-2 items-center text-xxs"
+                  className="area-history items-center text-xxs"
                   key={history.id}
                 >
                   <div className="flex text-right flex-col space-y-0.5 text-media-primary-black opacity-60">
@@ -89,7 +100,16 @@ export const HistoryMinistry = () => {
 
                   <div className="flex flex-col relative stepper">
                     <div className="z-10">
-                      <TrackingIcon />
+                      <div
+                        className={`rounded-full flex items-center justify-center ${
+                          idx === 0
+                            ? "bg-media-primary-blue pulseActive"
+                            : "bg-media-black-6"
+                        }`}
+                        style={{ width: "38px", height: "38px" }}
+                      >
+                        <PencilIcon />
+                      </div>
                     </div>
                     {idx !== listHistory.length - 1 && (
                       <div className="lineStepper"></div>

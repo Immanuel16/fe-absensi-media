@@ -18,6 +18,8 @@ import FormRecruitment from "../pages/Recruitment/FormRecruitment/FormRecruitmen
 import Register from "../pages/Register/Register";
 import { HistoryMinistry } from "../pages/Account/HistoryMinistry/HistoryMinistry";
 import PrivacyInfoAccount from "../pages/Account/PrivacyInfoAccount/PrivacyInfoAccount";
+import TotalPk from "../pages/Account/TotalPk/TotalPk";
+import BankAccount from "../pages/Account/BankAccount/BankAccount";
 
 const Routing = () => {
   return (
@@ -48,6 +50,8 @@ const Routing = () => {
             element={<HistoryMinistry />}
           />
           <Route path="account/privacy-info" element={<PrivacyInfoAccount />} />
+          <Route path="account/total-pk" element={<TotalPk />} />
+          <Route path="account/bank" element={<BankAccount />} />
 
           {/* absence routes */}
           <Route path="absen" element={<Absensi />} />

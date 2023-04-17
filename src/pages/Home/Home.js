@@ -6,7 +6,9 @@ import { useUser } from "../../context/Auth";
 import { useSpinner } from "../../context/Spinner";
 import apiHelper from "../../helper/api";
 import { convertDate, formatRupiah } from "../../util/util";
+import { useNavigate } from "react-router";
 function Home() {
+  const navigate = useNavigate();
   const { user } = useUser();
   const today = new Date();
   const { setShowSpinner } = useSpinner();
@@ -82,8 +84,15 @@ function Home() {
 
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between items-center">
-              <p className="text-sm font-bold">Riwayat Pelayanan</p>
-              {/* <button className="text-media-primary-orange">Lihat Semua</button> */}
+              <p className="text-sm font-bold font-montserrat">
+                Riwayat Pelayanan
+              </p>
+              <button
+                className="text-media-primary-orange"
+                onClick={() => navigate("account/history-ministry")}
+              >
+                Lihat Semua
+              </button>
             </div>
             {/* list ministry */}
             {listMinistry.length > 0 ? (

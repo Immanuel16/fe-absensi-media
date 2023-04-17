@@ -1,10 +1,10 @@
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import { Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSpinner } from "../../../context/Spinner";
 import apiHelper from "../../../helper/api";
-import { convertDate, dateFormat, getDifferentDate } from "../../../util/util";
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Pagination } from "antd";
 import { InitialValuesCrew } from "../../../schemas/UserSchemas";
+import { convertDate, dateFormat, getCrewAge } from "../../../util/util";
 import { DetailCrew } from "./DetailCrew";
 
 const Crew = () => {
@@ -27,8 +27,7 @@ const Crew = () => {
       .then(({ data }) => {
         data.crew.map((crew) => {
           crew.age =
-            getDifferentDate(convertDate(crew.birth_date, "DD/MM/YYYY"), true) *
-            -1;
+            getCrewAge(convertDate(crew.birth_date, "DD/MM/YYYY")) * -1;
           crew.username = crew.username.toLowerCase();
         });
         setCrews(data.crew);

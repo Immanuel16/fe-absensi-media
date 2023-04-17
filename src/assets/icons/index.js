@@ -436,6 +436,52 @@ const TrackingSvg = () => (
   </svg>
 );
 
+const TrackingNonActiveSvg = () => (
+  <svg
+    width="38"
+    height="39"
+    viewBox="0 0 38 39"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="19" cy="19.5" r="19" fill="#D0D0D0" />
+    <path
+      d="M23.8364 10.8638L21.5909 13.1092L26.0818 17.6001L28.3273 15.3547L23.8364 10.8638ZM19.3455 15.3547L10.3636 24.3365V28.8274H14.8546L23.8364 19.8456L19.3455 15.3547Z"
+      fill="white"
+    />
+  </svg>
+);
+
+const PencilSvg = () => (
+  <svg
+    width="19"
+    height="19"
+    viewBox="0 0 19 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.8364 0.86377L11.5909 3.10922L16.0818 7.60013L18.3273 5.35468L13.8364 0.86377ZM9.34547 5.35468L0.363647 14.3365V18.8274H4.85456L13.8364 9.84559L9.34547 5.35468Z"
+      fill="white"
+    />
+  </svg>
+);
+
+const ArrowLeftSvg = ({ color }) => (
+  <svg
+    width="31"
+    height="16"
+    viewBox="0 0 31 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M11.625 0L0 7.66955L11.625 15.1872V10.1248H31V5.06241H11.625V0Z"
+      fill={color || "white"}
+    />
+  </svg>
+);
+
 /* ----- END OF SVG ----- */
 
 /* icon */
@@ -455,17 +501,25 @@ const CloseIcon = (props) => <Icon component={CloseSvg} {...props} />;
 const TaskIcon = (props) => <Icon component={TaskSvg} {...props} />;
 const BirthdayIcon = (props) => <Icon component={PartySvg} {...props} />;
 const TrackingIcon = (props) => <Icon component={TrackingSvg} {...props} />;
+const TrackingNonActiveIcon = (props) => (
+  <Icon component={TrackingNonActiveSvg} {...props} />
+);
+const BackIcon = ({ color }) => <ArrowLeftSvg color={color} />;
+const PencilIcon = (props) => <Icon component={PencilSvg} {...props} />;
 
 export {
   AbsenceMenuIcon,
   AccountMenuIcon,
   AdminMenuIcon,
+  BackIcon,
   BirthdayIcon,
   CashMenuIcon,
   CloseIcon,
   HomeMenuIcon,
   MoreMenuIcon,
+  PencilIcon,
   SearchIcon,
   TaskIcon,
   TrackingIcon,
+  TrackingNonActiveIcon,
 };

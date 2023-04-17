@@ -1,16 +1,14 @@
-import { Input } from "antd";
 import React from "react";
-import { useNavigate } from "react-router";
-import { DefaultAva } from "../../../assets";
 import { BackIcon } from "../../../assets/icons";
+import { useNavigate } from "react-router";
 import { useUser } from "../../../context/Auth";
-import { convertDate } from "../../../util/util";
+import { DefaultAva } from "../../../assets";
+import { Input } from "antd";
 
-const { TextArea } = Input;
-
-export default function PrivacyInfoAccount() {
+const BankAccount = () => {
   const navigate = useNavigate();
   const { user } = useUser();
+
   return (
     <>
       <div className="flex flex-col space-y-10">
@@ -25,12 +23,12 @@ export default function PrivacyInfoAccount() {
           <button onClick={() => navigate(-1)}>
             <BackIcon />
           </button>
-          <p>Info Pribadi</p>
+          <p>Akun Bank</p>
           <p></p>
         </div>
 
         {/* main */}
-        <div className="flex flex-col items-center space-y-8 w-full px-4">
+        <div className="flex flex-col space-y-8 items-center w-full px-4">
           {/* image */}
           <div
             className={`rounded-full ${
@@ -50,47 +48,47 @@ export default function PrivacyInfoAccount() {
 
           {/* info */}
           <div className="flex flex-col space-y-4 w-full">
-            {/* nama lengkap */}
+            {/* Nomor Rekening */}
             <div className="flex flex-col space-y-1">
               <label
-                htmlFor="tanggal"
+                htmlFor="norek"
                 className="font-semibold text-media-black-3"
               >
-                Nama Lengkap
+                Nomor Rekening
               </label>
               <Input
                 className="text-media-black-4 border-media-secondary-gray"
-                value={user.full_name}
+                value={user.bank_acc_num}
                 readOnly
               />
             </div>
 
-            {/* Alamat Rumah */}
+            {/* Nama Bank */}
             <div className="flex flex-col space-y-1">
               <label
-                htmlFor="tanggal"
+                htmlFor="norek"
                 className="font-semibold text-media-black-3"
               >
-                Alamat Rumah
+                Nama Bank
               </label>
-              <TextArea
-                className="text-media-black-4 border-media-secondary-gray capitalize"
-                value={user.address}
+              <Input
+                className="text-media-black-4 border-media-secondary-gray"
+                value={user.bank_name}
                 readOnly
               />
             </div>
 
-            {/* Tanggal Lahir */}
+            {/* Atas Nama */}
             <div className="flex flex-col space-y-1">
               <label
-                htmlFor="tanggal"
+                htmlFor="bank_acc_name"
                 className="font-semibold text-media-black-3"
               >
-                Tanggal Lahir
+                Atas Nama
               </label>
               <Input
                 className="text-media-black-4 border-media-secondary-gray"
-                value={convertDate(user.birth_date, "DD-MM-YYYY")}
+                value={user.bank_acc_name}
                 readOnly
               />
             </div>
@@ -99,4 +97,6 @@ export default function PrivacyInfoAccount() {
       </div>
     </>
   );
-}
+};
+
+export default BankAccount;

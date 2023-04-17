@@ -13,10 +13,7 @@ export default function Account() {
   const [leftBirthday, setLeftBirthday] = useState(0);
 
   const getLeftBirthday = () => {
-    const birthdate = `${convertDate(
-      user.birth_date,
-      "DD/MM"
-    )}/${dayjs().year()}`;
+    const birthdate = `${convertDate(user.birth_date, "DD/MM")}`;
     setLeftBirthday(getDifferentDate(birthdate));
   };
   useEffect(() => {
@@ -36,50 +33,57 @@ export default function Account() {
           <div className="bg-media-primary-blue rounded-b-header h-32"></div>
         </div>
 
-        {/* image */}
-        <div
-          className={`rounded-full ${
-            user.photo ? "p-2" : "p-4"
-          } bg-white shadow-md w-32 h-32`}
-          style={{ marginTop: "-95px" }}
-        >
-          <img
-            src={user.photo || DefaultAva}
-            alt=""
+        <div className="px-8 w-full flex flex-col justify-center items-center">
+          {/* image */}
+          <div
             className={`rounded-full ${
-              user.photo
-                ? "max-w-full max-h-full border-2 aspect-1  border-media-primary-gray"
-                : ""
-            }`}
-          />
-        </div>
+              user.photo ? "p-2" : "p-4"
+            } bg-white shadow-md w-32 h-32`}
+            style={{ marginTop: "-95px" }}
+          >
+            <img
+              src={user.photo || DefaultAva}
+              alt=""
+              className={`rounded-full ${
+                user.photo
+                  ? "max-w-full max-h-full border-2 aspect-1  border-media-primary-gray"
+                  : ""
+              }`}
+            />
+          </div>
 
-        <div className="px-8 w-full flex flex-col items-center">
           {/* name and phone number */}
           <div className="flex flex-col space-y-0.5 text-media-primary-blue mt-2 mb-5 text-center text-sm">
             <p className="text-xl font-bold capitalize">{user?.full_name}</p>
             <p>{user.phone}</p>
           </div>
+          {/* divider */}
+          <div
+            className="border-2 border-media-secondary-gray opacity-40 mb-6"
+            style={{ width: "88%" }}
+          ></div>
+        </div>
 
+        <div
+          className="px-8 w-full flex flex-col items-center overflow-y-auto"
+          style={{ height: "calc(100vh - 485px)" }}
+        >
           {/* sections */}
           <div className="flex flex-col space-y-7 w-full items-center">
-            {/* divider */}
-            <div
-              className="border-2 border-media-secondary-gray opacity-40"
-              style={{ width: "88%" }}
-            ></div>
-
             {/* birthday sections */}
-            {leftBirthday < 31 && !leftBirthday}
-            <div className="bg-media-primary-blue flex justify-between items-center py-3 px-5 rounded-xl shadow w-full">
-              <BirthdayIcon />
-              <p className="text-center text-sm text-white capitalize font-semibold">
-                your birthday {leftBirthday} days left
-              </p>
-              <div className="rotate-90">
+            {leftBirthday <= 30 && leftBirthday ? (
+              <div className="bg-media-primary-blue flex justify-between items-center py-3 px-5 rounded-xl shadow w-full">
                 <BirthdayIcon />
+                <p className="text-center text-sm text-white capitalize font-semibold">
+                  your birthday {leftBirthday} days left
+                </p>
+                <div className="rotate-90">
+                  <BirthdayIcon />
+                </div>
               </div>
-            </div>
+            ) : (
+              <></>
+            )}
 
             {/* privacy info sections */}
             <button
@@ -91,7 +95,10 @@ export default function Account() {
             </button>
 
             {/* total pk sections */}
-            <button className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm">
+            <button
+              onClick={() => navigate("total-pk")}
+              className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm"
+            >
               <p>Total PK</p>
               <RightOutlined />
             </button>
@@ -104,11 +111,21 @@ export default function Account() {
               <p>History Pelayanan</p>
               <RightOutlined />
             </button>
-          </div>
 
+            {/* bank sections */}
+            <button
+              onClick={() => navigate("bank")}
+              className="bg-white flex justify-between items-center border border-media-secondary-gray py-3 pl-6 pr-3 rounded-xl shadow w-full text-sm"
+            >
+              <p>Akun Bank</p>
+              <RightOutlined />
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col space-y-4 w-full items-center mt-6">
           {/* button logout */}
           <button
-            className="border border-salestrack-primary-blue rounded-xl text-media-primary-blue font-semibold text-sm w-4/5 py-1.5 mt-10 mb-8"
+            className="border border-salestrack-primary-blue rounded-xl text-media-primary-blue font-semibold text-sm w-4/5 py-1.5"
             onClick={logout}
           >
             Logout
