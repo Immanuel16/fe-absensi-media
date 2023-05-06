@@ -18,11 +18,11 @@ const getCrewAge = (birthdate) => {
   const formattedDate = birthdate.split("/");
   const birthdays = new Date(
     formattedDate[2],
-    formattedDate[1],
+    formattedDate[1] - 1,
     formattedDate[0]
   );
   const now = new Date();
-  const diffTime = birthdays.getTime() - now.getTime();
+  const diffTime = now.getTime() - birthdays.getTime();
   const dividedYear = 1000 * 3600 * 24 * 365.25;
   return Math.floor(diffTime / dividedYear);
 };

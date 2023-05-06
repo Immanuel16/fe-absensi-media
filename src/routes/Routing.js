@@ -20,6 +20,7 @@ import { HistoryMinistry } from "../pages/Account/HistoryMinistry/HistoryMinistr
 import PrivacyInfoAccount from "../pages/Account/PrivacyInfoAccount/PrivacyInfoAccount";
 import TotalPk from "../pages/Account/TotalPk/TotalPk";
 import BankAccount from "../pages/Account/BankAccount/BankAccount";
+import GuideTools from "../pages/Info/GuideTools";
 
 const Routing = () => {
   return (
@@ -77,6 +78,7 @@ const Routing = () => {
             }
           />
           <Route path="/form-recruitment" element={<FormRecruitment />} />
+          <Route path="/how-to-use-media-tools" element={<GuideTools />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate replace to="/" />} />

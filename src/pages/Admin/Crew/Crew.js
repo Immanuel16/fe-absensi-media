@@ -26,8 +26,7 @@ const Crew = () => {
       .get(`/apps/users?offset=${offset}&limit=${limit}`)
       .then(({ data }) => {
         data.crew.map((crew) => {
-          crew.age =
-            getCrewAge(convertDate(crew.birth_date, "DD/MM/YYYY")) * -1;
+          crew.age = getCrewAge(convertDate(crew.birth_date, "DD/MM/YYYY"));
           crew.username = crew.username.toLowerCase();
         });
         setCrews(data.crew);

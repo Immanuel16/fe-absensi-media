@@ -11,12 +11,16 @@ import ImgComingSoon from "./img/img-coming-soon.png";
 import ImgTarget from "./img/target.png";
 import ImgMaintenance from "./img/img-under-develop.png";
 import DefaultAva from "./img/ava.png";
+import BgTotalPk from "./img/bg-total-pk.png";
+import BadgeCheck from "./img/badge-check.png";
 
 export {
   AccountMenuIcon,
   HistoryMenuIcon,
   HomeMenuIcon,
+  BadgeCheck,
   BgFormRecruitment,
+  BgTotalPk,
   DefaultAva,
   ImgComingSoon,
   ImgEmptyAbsence,

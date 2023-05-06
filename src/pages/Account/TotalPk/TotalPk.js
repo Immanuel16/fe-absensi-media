@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { BackIcon } from "../../../assets/icons";
 import "../Account.scss";
-import { ImgMaintenance } from "../../../assets";
+import { BgTotalPk, ImgMaintenance, BadgeCheck } from "../../../assets";
 
 const TotalPk = () => {
   const navigate = useNavigate();
@@ -24,15 +24,64 @@ const TotalPk = () => {
           <p></p>
         </div>
 
-        <div className="bg-total-pk grid place-items-center px-6">
+        <div className="bg-total-pk grid place-items-center px-6 w-full">
           <div
-            className="bg-white shadow-md rounded-3xl w-full flex flex-col justify-center items-center space-y-8"
-            style={{ height: "calc(100vh - 300px)" }}
+            className="bg-white shadow-md rounded-3xl px-5 w-full flex flex-col justify-center items-center space-y-10 bg-cover"
+            style={{
+              height: "calc(100vh - 300px)",
+            }}
           >
-            <img src={ImgMaintenance} alt="" />
-            <div className="flex flex-col text-media-primary-blue text-center">
-              <p>This Page Under</p>
-              <p className="font-bold text-base">Development!!!</p>
+            <img src={BadgeCheck} alt="" />
+            {/* <img src={ImgMaintenance} alt="" /> */}
+            <div className="flex flex-col space-y-3 w-full">
+              <div className="flex justify-between px-3">
+                {/* left */}
+                <div className="flex flex-col space-y-1">
+                  <p className="opacity-70">Date</p>
+                  <p className="text-sm">13/04/2023</p>
+                </div>
+
+                {/* right */}
+                <div className="flex flex-col space-y-1 text-right">
+                  <p className="opacity-70">No.Rek</p>
+                  <p className="text-sm">12345678910</p>
+                </div>
+              </div>
+
+              {/* divider */}
+              <div className="border w-full border-media-primary-black"></div>
+
+              <div className="flex justify-between opacity-70 px-3">
+                <p>Item</p>
+                <p className="text-right">Subtotal</p>
+              </div>
+
+              <div className="flex flex-col space-y-1 text-sm px-3">
+                <div className="flex justify-between items-center">
+                  <p>Potongan Seragam</p>
+                  <p className="text-right">-Rp. 50.000</p>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <p>Potongan Gathering</p>
+                  <p className="text-right">-Rp. 100.000</p>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <p>PK</p>
+                  <p className="text-right">Rp. 500.000</p>
+                </div>
+              </div>
+
+              {/* divider */}
+              <div className="border w-full border-media-primary-black"></div>
+
+              <div className="flex justify-between items-center text-sm px-3">
+                <p className="text-media-danger-3 font-bold uppercase text-xl">
+                  total
+                </p>
+                <p>Rp. 350.000</p>
+              </div>
             </div>
           </div>
         </div>
