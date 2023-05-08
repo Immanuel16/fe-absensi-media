@@ -21,6 +21,8 @@ import PrivacyInfoAccount from "../pages/Account/PrivacyInfoAccount/PrivacyInfoA
 import TotalPk from "../pages/Account/TotalPk/TotalPk";
 import BankAccount from "../pages/Account/BankAccount/BankAccount";
 import GuideTools from "../pages/Info/GuideTools";
+import FormShooting from "../pages/Shooting/FormShooting/FormShooting";
+import Shooting from "../pages/Shooting/Shooting";
 
 const Routing = () => {
   return (
@@ -78,9 +80,13 @@ const Routing = () => {
             }
           />
           <Route path="/form-recruitment" element={<FormRecruitment />} />
+          <Route path="/form-shooting" element={<FormShooting />} />
           <Route path="/how-to-use-media-tools" element={<GuideTools />} />
         </Route>
       </Route>
+
+      <Route path="/list-shooting" element={<Shooting />} />
+
       <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
