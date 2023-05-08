@@ -87,12 +87,14 @@ function Home() {
               <p className="text-sm font-bold font-montserrat">
                 Riwayat Pelayanan
               </p>
-              <button
-                className="text-media-primary-orange"
-                onClick={() => navigate("account/history-ministry")}
-              >
-                Lihat Semua
-              </button>
+              {listMinistry.length > 0 && (
+                <button
+                  className="text-media-primary-orange"
+                  onClick={() => navigate("account/history-ministry")}
+                >
+                  Lihat Semua
+                </button>
+              )}
             </div>
             {/* list ministry */}
             {listMinistry.length > 0 ? (

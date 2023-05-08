@@ -49,6 +49,7 @@ module.exports = {
           "black-4": "#868686",
           "black-5": "#c4c4c4",
           "black-6": "#d0d0d0",
+          "black-7": "#979797",
         },
       }),
       fontFamily: {

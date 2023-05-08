@@ -49,20 +49,23 @@ const PrivateLayout = () => {
   return (
     <div className="relative">
       {/* header */}
-      {location.pathname !== "/" && !location.pathname.includes("account") && (
-        <header className="bg-media-primary-blue text-white text-xl font-semibold shadow-md sticky top-0 z-10 w-full py-5 mb-6 rounded-br-header">
-          <div className="relative">
-            <div className="bg-white absolute top-12 w-2/3 h-0.5"></div>
-          </div>
-          <div className="px-6">{titleHeader}</div>
-        </header>
-      )}
+      {location.pathname !== "/" &&
+        !location.pathname.includes("account") &&
+        location.pathname !== "/cash" && (
+          <header className="bg-media-primary-blue text-white text-xl font-semibold shadow-md sticky top-0 z-10 w-full py-5 mb-6 rounded-br-header">
+            <div className="relative">
+              <div className="bg-white absolute top-12 w-2/3 h-0.5"></div>
+            </div>
+            <div className="px-6">{titleHeader}</div>
+          </header>
+        )}
 
       {/* main content */}
       <main
         className={`${
           (location.pathname === "/" ||
-            location.pathname.includes("account")) &&
+            location.pathname.includes("account") ||
+            location.pathname === "/cash") &&
           "h-content"
         } bg-white text-xs overflow-y-auto`}
       >

@@ -21,6 +21,7 @@ import PrivacyInfoAccount from "../pages/Account/PrivacyInfoAccount/PrivacyInfoA
 import TotalPk from "../pages/Account/TotalPk/TotalPk";
 import BankAccount from "../pages/Account/BankAccount/BankAccount";
 import GuideTools from "../pages/Info/GuideTools";
+import HistoryCash from "../pages/Cash/History/History";
 
 const Routing = () => {
   return (
@@ -64,6 +65,7 @@ const Routing = () => {
 
           {/* cash routes */}
           <Route path="cash" element={<Cash />} />
+          <Route path="cash/history" element={<HistoryCash />} />
         </Route>
 
         {/* public routes */}

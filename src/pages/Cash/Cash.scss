@@ -1,0 +1,9 @@
+.bg-gradient-total-cash {
+  background: linear-gradient(180deg, #3B7BE0 0%, #2ADAF2 45.68%, #E1EDFF 100%);
+}
+
+.area-history-cash {
+  display: grid;
+  grid-template-columns: 60% auto;
+  gap: 12px;
+}
