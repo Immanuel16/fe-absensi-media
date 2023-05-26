@@ -74,22 +74,20 @@ const FormShooting = () => {
   const saveData = (value, helper) => {
     value.request_date = `${value.request_date} ${value.request_time}`;
     delete value.request_time;
-    console.log(value);
-    // apiHelper
-    //   .post("/public/shooting-request/add", value)
-    //   .then((res) => {
-    //     showAlertSuccess("Data anda berhasil disimpan");
-    //     helper.resetForm(value);
-    //     navigate("/form-shooting");
-    //   })
-    //   .catch(({ response }) => {
-    //     showAlertError(response.data.message);
-    //   });
+    apiHelper
+      .post("/public/shooting-request/add", value)
+      .then((res) => {
+        showAlertSuccess("Permintaan anda berhasil disimpan");
+        helper.resetForm(value);
+        navigate("/form-shooting");
+      })
+      .catch(({ response }) => {
+        showAlertError(response.data.message);
+      });
   };
 
   useEffect(() => {
     getListDivision();
-    console.log(disabledHours());
   }, []);
 
   return (

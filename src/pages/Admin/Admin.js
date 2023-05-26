@@ -4,6 +4,7 @@ import "./Admin.scss";
 import Bank from "./Bank/Bank";
 import Birthday from "./Birthday/Birthday";
 import Crew from "./Crew/Crew";
+import Retreat from "./Retreat/Retreat";
 
 const Admin = () => {
   const role = localStorage.getItem("role");
@@ -32,6 +33,9 @@ const Admin = () => {
       case 3:
         title += "Bank";
         break;
+      case 4:
+        title += "Gathering";
+        break;
       default:
         break;
     }
@@ -43,6 +47,7 @@ const Admin = () => {
       <div className="flex flex-col space-y-4 px-4">
         {/* tabs */}
         <div className="flex space-x-3 items-center">
+          {/* kabid and sekretaris */}
           {(+role === 1 || +role === 2) && (
             <>
               {/* tab crew */}
@@ -57,18 +62,6 @@ const Admin = () => {
               >
                 Crew
               </button>
-
-              {/* tab training */}
-              {/* <button
-                type="button"
-                className={`text-sm pt-1 ${
-                  (tab === 1 &&
-                    "border-b-2 border-b-media-primary-orange pb-0.5") ||
-                  "pb-1"
-                }`}
-              >
-                Training
-              </button> */}
 
               {/* tab birthday */}
               <button
@@ -102,6 +95,20 @@ const Admin = () => {
               </button>
             </>
           )}
+
+          {/* --------- all --------- */}
+          {/* tab retreat */}
+          <button
+            type="button"
+            className={`text-sm pt-1 ${
+              (tab === 4 &&
+                "border-b-2 border-b-media-primary-orange pb-0.5") ||
+              "pb-1"
+            }`}
+            onClick={() => setTab(4)}
+          >
+            Gathering
+          </button>
         </div>
 
         {/* content tab */}
@@ -124,6 +131,13 @@ const Admin = () => {
           {tab === 3 && (
             <div className="pb-4 overflow-y-auto">
               <Bank />
+            </div>
+          )}
+
+          {/* Content Bank */}
+          {tab === 4 && (
+            <div className="pb-4 overflow-y-auto">
+              <Retreat />
             </div>
           )}
         </div>

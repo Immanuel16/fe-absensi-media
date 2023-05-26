@@ -253,42 +253,44 @@ const AddAbsence = () => {
         </div>
 
         {/* input operator komputer 2 */}
-        <div className="flex flex-col space-y-1">
-          <label
-            htmlFor="kom2"
-            // className={`${formik.touched.kom2 && formik.errors.kom2 ? 'text-media-danger-3': 'text-media-primary-gray'}`}
-          >
-            Operator Komputer 2
-          </label>
-          <div
-            className={`border rounded-lg ${
-              formik.touched.kom2 && formik.errors.kom2
-                ? "border-media-danger-3"
-                : ""
-            } w-full`}
-          >
-            <Select
-              bordered={false}
-              showSearch
-              onBlur={() => onBlurField("kom2")}
-              placeholder="Pilih operator komputer 2"
-              optionFilterProp="children"
-              onChange={(value) => onChangeField("kom2", value)}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={userList}
-              className="w-full"
-              value={id && formik.values.kom2}
+        {!formik.values.ir.includes("BTC") && (
+          <div className="flex flex-col space-y-1">
+            <label
+              htmlFor="kom2"
+              // className={`${formik.touched.kom2 && formik.errors.kom2 ? 'text-media-danger-3': 'text-media-primary-gray'}`}
+            >
+              Operator Komputer 2
+            </label>
+            <div
+              className={`border rounded-lg ${
+                formik.touched.kom2 && formik.errors.kom2
+                  ? "border-media-danger-3"
+                  : ""
+              } w-full`}
+            >
+              <Select
+                bordered={false}
+                showSearch
+                onBlur={() => onBlurField("kom2")}
+                placeholder="Pilih operator komputer 2"
+                optionFilterProp="children"
+                onChange={(value) => onChangeField("kom2", value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={userList}
+                className="w-full"
+                value={id && formik.values.kom2}
+              />
+            </div>
+            <ErrorMessage
+              show={formik.touched.kom2 && formik.errors.kom2}
+              message={formik.errors.kom2}
             />
           </div>
-          <ErrorMessage
-            show={formik.touched.kom2 && formik.errors.kom2}
-            message={formik.errors.kom2}
-          />
-        </div>
+        )}
 
         {/* input lighting */}
         <div className="flex flex-col space-y-1">
@@ -357,136 +359,144 @@ const AddAbsence = () => {
         </div>
 
         {/* input cameraman 2 */}
-        <div className="flex flex-col space-y-1">
-          <label htmlFor="cam2">Cameraman 2</label>
-          <div
-            className={`border rounded-lg ${
-              formik.touched.cam2 && formik.errors.cam2
-                ? "border-media-danger-3"
-                : ""
-            } w-full`}
-          >
-            <Select
-              bordered={false}
-              showSearch
-              onBlur={() => onBlurField("cam2")}
-              placeholder="Pilih cameraman 2"
-              optionFilterProp="children"
-              onChange={(value) => onChangeField("cam2", value)}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={userList}
-              className="w-full"
-              value={id && formik.values.cam2}
+        {!formik.values.ir.includes("BTC") && (
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="cam2">Cameraman 2</label>
+            <div
+              className={`border rounded-lg ${
+                formik.touched.cam2 && formik.errors.cam2
+                  ? "border-media-danger-3"
+                  : ""
+              } w-full`}
+            >
+              <Select
+                bordered={false}
+                showSearch
+                onBlur={() => onBlurField("cam2")}
+                placeholder="Pilih cameraman 2"
+                optionFilterProp="children"
+                onChange={(value) => onChangeField("cam2", value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={userList}
+                className="w-full"
+                value={id && formik.values.cam2}
+              />
+            </div>
+            <ErrorMessage
+              show={formik.touched.cam2 && formik.errors.cam2}
+              message={formik.errors.cam2}
             />
           </div>
-          <ErrorMessage
-            show={formik.touched.cam2 && formik.errors.cam2}
-            message={formik.errors.cam2}
-          />
-        </div>
+        )}
 
         {/* input cameraman 3 */}
-        <div className="flex flex-col space-y-1">
-          <label htmlFor="cam3">Cameraman 3</label>
-          <div
-            className={`border rounded-lg ${
-              formik.touched.cam3 && formik.errors.cam3
-                ? "border-media-danger-3"
-                : ""
-            } w-full`}
-          >
-            <Select
-              bordered={false}
-              showSearch
-              onBlur={() => onBlurField("cam3")}
-              placeholder="Pilih cameraman 3"
-              optionFilterProp="children"
-              onChange={(value) => onChangeField("cam3", value)}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={userList}
-              className="w-full"
-              value={id && formik.values.cam3}
+        {!formik.values.ir.includes("BTC") && (
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="cam3">Cameraman 3</label>
+            <div
+              className={`border rounded-lg ${
+                formik.touched.cam3 && formik.errors.cam3
+                  ? "border-media-danger-3"
+                  : ""
+              } w-full`}
+            >
+              <Select
+                bordered={false}
+                showSearch
+                onBlur={() => onBlurField("cam3")}
+                placeholder="Pilih cameraman 3"
+                optionFilterProp="children"
+                onChange={(value) => onChangeField("cam3", value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={userList}
+                className="w-full"
+                value={id && formik.values.cam3}
+              />
+            </div>
+            <ErrorMessage
+              show={formik.touched.cam3 && formik.errors.cam3}
+              message={formik.errors.cam3}
             />
           </div>
-          <ErrorMessage
-            show={formik.touched.cam3 && formik.errors.cam3}
-            message={formik.errors.cam3}
-          />
-        </div>
+        )}
 
         {/* input switcher */}
-        <div className="flex flex-col space-y-1">
-          <label htmlFor="switcher">Switcher</label>
-          <div
-            className={`border rounded-lg ${
-              formik.touched.switcher && formik.errors.switcher
-                ? "border-media-danger-3"
-                : ""
-            } w-full`}
-          >
-            <Select
-              bordered={false}
-              showSearch
-              onBlur={() => onBlurField("switcher")}
-              placeholder="Pilih switcher"
-              optionFilterProp="children"
-              onChange={(value) => onChangeField("switcher", value)}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={userList}
-              className="w-full"
-              value={id && formik.values.switcher}
+        {!formik.values.ir.includes("BTC") && (
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="switcher">Switcher</label>
+            <div
+              className={`border rounded-lg ${
+                formik.touched.switcher && formik.errors.switcher
+                  ? "border-media-danger-3"
+                  : ""
+              } w-full`}
+            >
+              <Select
+                bordered={false}
+                showSearch
+                onBlur={() => onBlurField("switcher")}
+                placeholder="Pilih switcher"
+                optionFilterProp="children"
+                onChange={(value) => onChangeField("switcher", value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={userList}
+                className="w-full"
+                value={id && formik.values.switcher}
+              />
+            </div>
+            <ErrorMessage
+              show={formik.touched.switcher && formik.errors.switcher}
+              message={formik.errors.switcher}
             />
           </div>
-          <ErrorMessage
-            show={formik.touched.switcher && formik.errors.switcher}
-            message={formik.errors.switcher}
-          />
-        </div>
+        )}
 
         {/* input photografer */}
-        <div className="flex flex-col space-y-1">
-          <label htmlFor="photo">Photographer</label>
-          <div
-            className={`border rounded-lg ${
-              formik.touched.photo && formik.errors.photo
-                ? "border-media-danger-3"
-                : ""
-            } w-full`}
-          >
-            <Select
-              bordered={false}
-              showSearch
-              onBlur={() => onBlurField("photo")}
-              placeholder="Pilih photographer"
-              optionFilterProp="children"
-              onChange={(value) => onChangeField("photo", value)}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={userList}
-              className="w-full"
-              value={id && formik.values.photo}
+        {!formik.values.ir.includes("BTC") && (
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="photo">Photographer</label>
+            <div
+              className={`border rounded-lg ${
+                formik.touched.photo && formik.errors.photo
+                  ? "border-media-danger-3"
+                  : ""
+              } w-full`}
+            >
+              <Select
+                bordered={false}
+                showSearch
+                onBlur={() => onBlurField("photo")}
+                placeholder="Pilih photographer"
+                optionFilterProp="children"
+                onChange={(value) => onChangeField("photo", value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={userList}
+                className="w-full"
+                value={id && formik.values.photo}
+              />
+            </div>
+            <ErrorMessage
+              show={formik.touched.photo && formik.errors.photo}
+              message={formik.errors.photo}
             />
           </div>
-          <ErrorMessage
-            show={formik.touched.photo && formik.errors.photo}
-            message={formik.errors.photo}
-          />
-        </div>
+        )}
 
         {/* input soundman 1 */}
         <div className="flex flex-col space-y-1">
@@ -522,37 +532,39 @@ const AddAbsence = () => {
         </div>
 
         {/* input soundman 2 */}
-        <div className="flex flex-col space-y-1">
-          <label htmlFor="sound2">Soundman 2</label>
-          <div
-            className={`border rounded-lg ${
-              formik.touched.sound2 && formik.errors.sound2
-                ? "border-media-danger-3"
-                : ""
-            } w-full`}
-          >
-            <Select
-              bordered={false}
-              showSearch
-              onBlur={() => onBlurField("sound2")}
-              placeholder="Pilih soundman 2"
-              optionFilterProp="children"
-              onChange={(value) => onChangeField("sound2", value)}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={userList}
-              className="w-full"
-              value={id && formik.values.sound2}
+        {!formik.values.ir.includes("BTC") && (
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="sound2">Soundman 2</label>
+            <div
+              className={`border rounded-lg ${
+                formik.touched.sound2 && formik.errors.sound2
+                  ? "border-media-danger-3"
+                  : ""
+              } w-full`}
+            >
+              <Select
+                bordered={false}
+                showSearch
+                onBlur={() => onBlurField("sound2")}
+                placeholder="Pilih soundman 2"
+                optionFilterProp="children"
+                onChange={(value) => onChangeField("sound2", value)}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={userList}
+                className="w-full"
+                value={id && formik.values.sound2}
+              />
+            </div>
+            <ErrorMessage
+              show={formik.touched.sound2 && formik.errors.sound2}
+              message={formik.errors.sound2}
             />
           </div>
-          <ErrorMessage
-            show={formik.touched.sound2 && formik.errors.sound2}
-            message={formik.errors.sound2}
-          />
-        </div>
+        )}
       </div>
       <button
         className="bg-media-primary-blue w-full text-white py-2.5 rounded-btn text-sm font-semibold"
