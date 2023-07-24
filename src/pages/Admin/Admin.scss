@@ -24,4 +24,12 @@
     align-items: center;
     justify-content: center;
   }
+
+  &-cash {
+    display: grid;
+    grid-template-columns: 18% 18% 18% 18% 18%;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
 }

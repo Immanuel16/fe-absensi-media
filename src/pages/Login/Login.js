@@ -67,7 +67,7 @@ export default function Login() {
       .catch((err) => {
         setShowSpinner(false);
         setDisableButton((prev) => !prev);
-        showAlertError(err.message);
+        showAlertError(err.response.data.message);
       });
   };
 

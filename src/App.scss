@@ -25,7 +25,12 @@ main {
 }
 
 .ant-input {
-  @apply rounded-lg p-3 text-sm font-medium
+  @apply rounded-lg p-3 text-sm font-medium;
+}
+
+.ant-input-number-input {
+  padding: 12px !important;
+  @apply rounded-lg text-sm font-medium;
 }
 
 
@@ -316,4 +321,14 @@ input.ant-checkbox-input {
 
 .h-18 {
   height: 72px;
+}
+
+.dotted-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /* start showing ellipsis when 3rd line is reached */
+  white-space: pre-wrap;
+  /* let the text wrap preserving spaces */
 }

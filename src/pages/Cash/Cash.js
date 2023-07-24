@@ -2,20 +2,33 @@ import { useEffect, useState } from "react";
 import apiHelper from "../../helper/api";
 import "./Cash.scss";
 import { convertDate, formatRupiah } from "../../util/util";
+import { useNavigate } from "react-router";
+import { useSpinner } from "../../context/Spinner";
 
 const Cash = () => {
+  const navigate = useNavigate();
   const [listCash, setListCash] = useState([]);
   const [totalCash, setTotalCash] = useState(0);
+  const { setShowSpinner } = useSpinner();
 
   const getListCash = () => {
-    apiHelper.get(`/apps/history-cash`).then(({ data }) => {
-      setTotalCash(data.total_cash);
-      data.history_cash.map((history) => {
-        history.tanggal = convertDate(history.tanggal, "dddd, DD MMMM YYYY");
-        history.totals = formatRupiah(history.totals);
+    setShowSpinner(true);
+    apiHelper
+      .get(`/apps/history-cash`)
+      .then(({ data }) => {
+        setShowSpinner(false);
+        setTotalCash(data.total_cash);
+        data.history_cash.map((history) => {
+          history.tanggal = convertDate(history.tanggal, "dddd, DD MMMM YYYY");
+          history.totals = formatRupiah(
+            history.totals < 0 ? history.totals * -1 : history.totals
+          );
+        });
+        setListCash(data.history_cash);
+      })
+      .catch((err) => {
+        setShowSpinner(false);
       });
-      setListCash(data.history_cash);
-    });
   };
 
   useEffect(() => {
@@ -33,7 +46,12 @@ const Cash = () => {
         <div className="px-5 pb-10 w-full" style={{ marginTop: "-100px" }}>
           <div className="bg-gradient-total-cash text-white p-10 rounded-card w-full">
             <div className="flex flex-col space-y-1 text-center font-bold">
-              <p className="text-base">Total Uang Kas</p>
+              <p
+                className="text-base"
+                style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}
+              >
+                Total Uang Kas
+              </p>
               <h2
                 className="text-4xl"
                 style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}
@@ -51,7 +69,10 @@ const Cash = () => {
               Uang Kas
             </p>
 
-            <button className="rounded-lg py-0.5 px-2 text-white bg-media-primary-orange font-semibold">
+            <button
+              className="rounded-lg py-0.5 px-2 text-white bg-media-primary-orange font-semibold"
+              onClick={() => navigate("history")}
+            >
               Detail
             </button>
           </div>
@@ -71,12 +92,16 @@ const Cash = () => {
                     <p>{cash.item}</p>
                   </div>
 
-                  <div
-                    className={`px-2.5 py-1 ${
-                      cash.type ? "bg-media-primary-blue" : "bg-media-danger-3"
-                    } text-white rounded-lg`}
-                  >
-                    {`${cash.type ? "+" : "-"} ${cash.totals}`}
+                  <div className="flex justify-end">
+                    <div
+                      className={`px-2.5 py-1.5 w-28 ${
+                        cash.type
+                          ? "bg-media-primary-blue"
+                          : "bg-media-danger-3"
+                      } text-white rounded-lg text-center`}
+                    >
+                      {`${cash.type ? "+" : "-"} ${cash.totals}`}
+                    </div>
                   </div>
                 </div>
               ))}

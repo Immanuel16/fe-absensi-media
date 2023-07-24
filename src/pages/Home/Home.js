@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import {ReactComponent as NotifIcon} from '../../assets/icons/bells.svg';
 import { ImgEmptyAbsence, ImgTarget } from "../../assets";
-import { TaskIcon } from "../../assets/icons";
+import { TaskIcon, WalletIcon } from "../../assets/icons";
 import { useUser } from "../../context/Auth";
 import { useSpinner } from "../../context/Spinner";
 import apiHelper from "../../helper/api";
@@ -13,9 +13,9 @@ function Home() {
   const today = new Date();
   const { setShowSpinner } = useSpinner();
   const [listMinistry, setListMinistry] = useState([]);
+  const [totalCash, setTotalCash] = useState(0);
 
   const getMinistryHistory = async () => {
-    setShowSpinner(true);
     apiHelper
       .get(`apps/users/ministry`)
       .then(({ data }) => {
@@ -23,16 +23,30 @@ function Home() {
         setListMinistry(data.history);
       })
       .catch((err) => {
+        setShowSpinner(false);
         console.log(err);
       });
   };
 
+  const getListCash = () => {
+    setShowSpinner(true);
+    apiHelper
+      .get(`/apps/history-cash`)
+      .then(({ data }) => {
+        setTotalCash(data.total_cash);
+        getMinistryHistory();
+      })
+      .catch((err) => {
+        setShowSpinner(false);
+      });
+  };
+
   useEffect(() => {
-    getMinistryHistory();
+    getListCash();
   }, []);
   return (
     <>
-      <div className="flex flex-col overflow-y-auto pb-20 w-full">
+      <div className="flex flex-col overflow-y-auto pb-24 w-full">
         <div
           className="bg-media-primary-blue rounded-b-xl px-4 pt-6 h-32 sticky"
           style={{
@@ -72,14 +86,21 @@ function Home() {
               filter: "drop-shadow(2px 2px 5px rgba(42, 218, 242, 0.6))",
             }}
           >
-            <div className="flex space-x-3 items-center">
-              <img src={ImgTarget} alt="" />
+            <div className="flex space-x-4 items-center">
+              <WalletIcon />
+              {/* <img src={ImgTarget} alt="" /> */}
               <div className="space-y-1">
                 <p>Total kas saat ini</p>
-                <p className="font-semibold">{formatRupiah(1900000)}</p>
+                <p className="font-semibold">{formatRupiah(totalCash)}</p>
               </div>
             </div>
             {/* see detail cash */}
+            <button
+              className="text-media-primary-blue"
+              onClick={() => navigate("cash/history")}
+            >
+              Lihat Detail
+            </button>
           </div>
 
           <div className="flex flex-col space-y-4">

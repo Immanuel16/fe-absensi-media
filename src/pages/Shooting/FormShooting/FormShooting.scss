@@ -1,0 +1,10 @@
+.ant-btn-primary {
+  background-color: #1677FF !important;
+}
+
+.grid-shooting {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr 1fr 1fr 2fr;
+  gap: 18px;
+  align-items: center; // justify-content: center;
+}
