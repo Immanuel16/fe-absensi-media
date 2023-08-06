@@ -1,0 +1,345 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;700&display=swap');
+
+.max-w-480 {
+  max-width: 480px !important;
+}
+
+main {
+  min-height: calc(100vh - 136px);
+  overflow-y: auto;
+}
+
+.h-content {
+  min-height: calc(100vh - 66px);
+  overflow-y: auto !important;
+}
+
+.width-dialog {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ant-input {
+  @apply rounded-lg p-3 text-sm font-medium;
+}
+
+.ant-input-number-input {
+  padding: 12px !important;
+  @apply rounded-lg text-sm font-medium;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.input-checkbox {
+  @apply h-5 w-5 rounded-sm text-media-primary-blue;
+}
+
+.shadow-menu {
+  box-shadow: 0px 2px 10px 2px rgba(134, 134, 134, 0.15);
+}
+
+.ant-input-affix-wrapper {
+  padding: 13px 16px !important;
+}
+
+button:disabled {
+  @apply bg-media-disabled cursor-not-allowed;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper-focused,
+.ant-input-affix-wrapper:hover,
+.ant-input-affix-wrapper:not(:where(.css-dev-only-do-not-override-sk7ap8).ant-input-affix-wrapper-disabled):hover {
+  @apply border-media-primary-blue;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dot-icons {
+  &-green {
+    @apply rounded-full bg-media-primary-green;
+  }
+
+  &-orange {
+    @apply rounded-full bg-media-primary-orange;
+  }
+
+  &-red {
+    @apply rounded-full bg-media-danger-3;
+  }
+}
+
+input {
+  font-family: 'Poppins', sans-serif;
+}
+
+.datepicker-custom.ant-picker {
+  padding: 12px;
+  border-radius: 8px;
+
+  &-focused {
+    @apply border-media-primary-blue;
+    box-shadow: none;
+  }
+
+  input {
+    @apply text-sm font-poppins;
+  }
+
+  .ant-picker-input>input {
+    @apply text-sm font-medium
+  }
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  @apply font-medium text-xs;
+  color: #868686;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  @apply font-medium text-xs;
+}
+
+::placeholder {
+  @apply font-medium text-xs;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+:where(.css-dev-only-do-not-override-sk7ap8).ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: 56px;
+  padding: 12px 16px;
+}
+
+.ant-select .ant-select-arrow {
+  font-size: 14px;
+  padding-right: 6px;
+}
+
+.ant-select-single .ant-select-selector {
+  @apply font-poppins text-xs h-14;
+}
+
+.ant-select-selection-item {
+  text-transform: capitalize;
+}
+
+.width-bottom-sheet {
+  max-width: 480px;
+  background: transparent;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bg-header-home {
+  background: linear-gradient(296.66deg, #2ACCC8 17.37%, rgba(42, 204, 200, 0.512933) 108.32%, rgba(42, 204, 200, 0) 112.75%);
+}
+
+.bg-card-target {
+  background: linear-gradient(273.07deg, rgba(255, 216, 4, 0.2) -5.42%, rgba(255, 216, 4, 0.0985656) 105.37%, rgba(255, 216, 4, 0) 109.17%);
+}
+
+label {
+  @apply font-semibold text-media-primary-gray;
+}
+
+.ant-select {
+  &-single {
+    // border: 1px solid rgb(131, 132, 132) !important;
+    // @apply rounded-lg;
+  }
+
+  &-selector {
+    height: 50px !important;
+    padding: 10px 0px 10px 12px !important;
+
+    input.ant-select-selection-search {
+      margin-top: 8px !important;
+      margin-right: 8px !important;
+    }
+  }
+
+  &-focused,
+  &-open {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  &-selection-search {
+    &-input {
+      margin-top: 8px !important;
+      @apply text-xs;
+
+      &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-media-primary-blue;
+  border-radius: 10px;
+
+  :hover {
+    background: #3282ae;
+  }
+}
+
+/* ant checkbox */
+input.ant-checkbox-input {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  @apply bg-media-primary-blue border-media-primary-blue;
+  // border-color: red;
+}
+
+
+.ant-select-item-option-content {
+  text-transform: capitalize;
+}
+
+/* pagination */
+.ant-pagination {
+  @apply space-x-2 flex items-center;
+
+  &-prev,
+  &-next {
+    margin-bottom: 4px !important;
+  }
+
+  &-item {
+    &-active {
+      @apply px-1 text-white;
+      border-radius: 50% !important;
+      background-color: #2adaf2 !important;
+      border: 1px solid #2adaf2 !important;
+
+      a {
+        color: white !important;
+      }
+    }
+
+    &-link {
+      .anticon {
+        color: #2adaf2;
+      }
+
+      &:disabled {
+        .anticon {
+          @apply text-media-secondary-gray;
+        }
+      }
+    }
+  }
+}
+
+.shadow-paging {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0)
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+}
+
+.animate_fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
+.animate {
+  &_1s {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+  }
+
+  &_1\.5s {
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+  }
+
+  &_2s {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+  }
+
+  &_2\.5s {
+    -webkit-animation-duration: 2.5s;
+    animation-duration: 2.5s;
+  }
+}
+
+.datepicker-custom.ant-picker .ant-picker-input>input {
+  @apply text-xs;
+}
+
+.h-18 {
+  height: 72px;
+}
+
+.dotted-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /* start showing ellipsis when 3rd line is reached */
+  white-space: pre-wrap;
+  /* let the text wrap preserving spaces */
+}
+
+/* for responsive iframe */
+.container-video {
+  @apply relative w-full overflow-hidden;
+  padding-top: 56.25%;
+  /* 16:9 aspect ratio */
+}
+
+.responsive-iframe {
+  @apply absolute inset-0 w-full h-full border-none rounded-xl;
+}

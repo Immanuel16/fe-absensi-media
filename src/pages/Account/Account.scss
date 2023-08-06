@@ -1,0 +1,64 @@
+.h {
+  &-history-ministry {
+    height: calc(100vh - 166px);
+  }
+}
+
+.lineStepper {
+  top: 38px;
+  position: absolute;
+  left: 18.5px;
+  height: 100%;
+  border-left: 1.8px dotted rgba(51, 51, 51, 0.5);
+}
+
+.stepper:last-child .lineStepper {
+  border-left: 1.8px dotted rgba(51, 51, 51, 0.5);
+  z-index: -1;
+}
+
+.pulseActive {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  animation: pulse 1500ms infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: #2adaf2 0 0 0 0;
+  }
+
+  75% {
+    box-shadow: #3692A700 0 0 0 12px;
+  }
+}
+
+.area-history {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 41% 40px 45%;
+  gap: 10px;
+}
+
+.bg-total-pk {
+  background: linear-gradient(180deg, #3B7BE0 0%, #2ADAF2 45.68%, #E1EDFF 100%);
+  height: calc(100vh - 156px);
+}
+
+.card-total-pk {
+  box-sizing: content-box;
+
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   left: 0;
+  //   bottom: 0;
+  //   width: 0;
+  //   height: 0;
+  //   // box-shadow: 0px 3px 6px 3px #333;
+  //   border-bottom: 13px solid #eee;
+  //   border-left: 55px solid #fff;
+  //   border-right: 55px solid #fff;
+  // }
+}
